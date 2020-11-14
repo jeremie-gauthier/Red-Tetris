@@ -209,7 +209,7 @@ const Leaderboard = ({ winner, players }) => {
     (player) => player.player.id !== winner.player.id,
   );
   const sortedPlayers = playersWithoutWinner.sort(
-    (current, next) => current.score > next.score,
+    (current, next) => parseInt(current.score) > parseInt(next.score),
   );
 
   return (
