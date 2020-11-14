@@ -41,11 +41,10 @@ const SpiedRoutes = () => {
   const location = useLocation();
   const history = useHistory();
   const prevLocation = usePrevious(location);
-  const { navigate } = useNavigate();
 
   React.useEffect(() => {
     if (prevLocation !== undefined && history.action === "POP") {
-      navigate("/force-refresh");
+      history.push("/force-refresh");
     }
   }, [location.pathname]);
 
