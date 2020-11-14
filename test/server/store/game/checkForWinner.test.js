@@ -44,11 +44,22 @@ describe("checkForWinner function", () => {
     expect(await checkForWinner(game.id)).toEqual(game.players[1]);
   });
 
-  test("Should return winner : no players playing, best score", async () => {
+  test("Should return winner p0 : no players playing, best score", async () => {
     const game = deepCopy(game1mock);
     game.players[0].loser = true;
     game.players[1].loser = true;
-    game.players[0].score = 100;
+    game.players[0].score = 500;
+    game.players[1].score = 200;
+    await setGame(game);
+
+    expect(await checkForWinner(game.id)).toEqual(game.players[0]);
+  });
+
+  test("Should return winner p1 : no players playing, best score", async () => {
+    const game = deepCopy(game1mock);
+    game.players[0].loser = true;
+    game.players[1].loser = true;
+    game.players[0].score = 10;
     game.players[1].score = 200;
     await setGame(game);
 
