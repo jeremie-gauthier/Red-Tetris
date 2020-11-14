@@ -65,7 +65,12 @@ export const popLobby = async (lobbyId, ownerId) => {
 
 export const joinLobby = async (player, lobbyId) => {
   const lobbies = (await getComplexObjectFromRedis("lobbies")) ?? {};
-
+  if (player == null) {
+    return Response.error(
+      LOBBY.SUBSCRIBE,
+      "There is a problem with your player!",
+    );
+  }
   const alreadyOnLobby = playerIsOnLobbyByPlayerId(lobbies, player.id);
   if (alreadyOnLobby) {
     return Response.error(LOBBY.SUBSCRIBE, "You already are in another lobby!");
@@ -118,7 +123,7 @@ export const kickedFromLobby = async (ownerId, playerId, lobbyId) => {
     return Response.error(LOBBY.KICK, "The player is not in your Lobby!");
   }
 
-  const playerEl = getPlayer(lobby.players, playerId);
+  const playerEl = getPlayerInLobby(lobby.players, playerId);
   const socketId = playerEl.player.socketId;
   const newPlayers = deletePlayerFromPlayers(lobby.players, playerId);
 
@@ -308,7 +313,7 @@ const deletePlayerFromPlayers = (players, playerId) =>
 const getNextOwner = (players, playerId) =>
   players.find((el) => el.player.id !== playerId);
 
-const getPlayer = (players, playerId) =>
+const getPlayerInLobby = (players, playerId) =>
   players.find((el) => el.player.id === playerId);
 
 export const getLobbyIdByPlayerId = (lobbies, playerId) => {
