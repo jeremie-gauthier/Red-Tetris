@@ -30,7 +30,9 @@ import usePrevious from "hooks/usePrevious";
 export default function Router() {
   return (
     <HashRouter hashType="noslash">
-      <SpiedRoutes />
+      <Switch>
+        <SpiedRoutes />
+      </Switch>
     </HashRouter>
   );
 }
@@ -39,29 +41,33 @@ const SpiedRoutes = () => {
   const location = useLocation();
   const history = useHistory();
   const prevLocation = usePrevious(location);
-  const [shouldReload, setShouldReload] = React.useState(false);
+  const { navigate } = useNavigate();
 
   React.useEffect(() => {
     if (prevLocation !== undefined && history.action === "POP") {
-      setShouldReload(true);
+      navigate("/force-refresh");
     }
   }, [location.pathname]);
 
   return (
-    <Switch>
+    <>
       <Route exact path="/" component={Home} />
-      {shouldReload && (
-        <Redirect to={{ pathname: "/", state: "forceRefresh" }} />
-      )}
+      <Route exact path="/force-refresh">
+        <ForceRefresh />
+      </Route>
       <Route path="/single-player[solo]/game">
         <GameContextProvider>
           <LazyLoader LazyComponent={LazyGameSolo} />
         </GameContextProvider>
       </Route>
       <ProtectedRoutes />
-    </Switch>
+    </>
   );
 };
+
+const ForceRefresh = () => (
+  <Redirect to={{ pathname: "/", state: "forceRefresh" }} />
+);
 
 const ProtectedRoutes = () => {
   const { state } = React.useContext(StoreContext);
