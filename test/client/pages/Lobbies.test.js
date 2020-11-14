@@ -24,6 +24,9 @@ describe("Lobbies", () => {
       { wrapper: MemoryRouter },
     );
 
+    const formResponse = socketStub.mock.calls[0];
+    expect(formResponse[0]).toEqual(LOBBIES.SUBSCRIBE);
+
     expect(screen.getByText(/Aucun salon trouvé./i)).toBeInTheDocument();
     expect(useEffectStub).toHaveBeenCalled();
   });
@@ -50,7 +53,7 @@ describe("Lobbies", () => {
     userEvent.selectOptions(screen.getByRole("combobox"), "2");
     userEvent.click(screen.getByTestId(/create_new_lobby/i));
 
-    const formResponse = socketStub.mock.calls[0];
+    const formResponse = socketStub.mock.calls[1];
     expect(formResponse[0]).toEqual(LOBBIES.ADD);
     expect(formResponse[1]).toHaveProperty("maxPlayer", "2");
     expect(formResponse[1]).toHaveProperty("name", "Mordor");
@@ -114,7 +117,7 @@ describe("Lobbies", () => {
     const mockLobby = screen.getByText(/Mordor/i);
     expect(mockLobby).toBeInTheDocument();
     userEvent.click(mockLobby);
-    const socketResponse = socketStub.mock.calls[0];
+    const socketResponse = socketStub.mock.calls[1];
     expect(socketResponse[0]).toEqual(LOBBY.SUBSCRIBE);
   });
 
