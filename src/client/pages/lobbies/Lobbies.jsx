@@ -88,7 +88,7 @@ export default function Lobbies() {
       <Link
         className="fixed top-0 left-0 pt-1 px-1 mt-1 ml-16
         text-sm border rounded shadow"
-        to="/"
+        to={{ pathname: "/", state: "forceRefresh" }}
       >
         {t("pages.lobbies.go_back_home")}
       </Link>

@@ -55,7 +55,10 @@ export default function GameSolo() {
   return (
     <FlexBox direction="col" height="full" className="justify-around">
       <FlexBox className="w-full justify-center">
-        <Link to="/" className="text-3xl font-bold hover:text-red-600">
+        <Link
+          to={{ pathname: "/", state: "forceRefresh" }}
+          className="text-3xl font-bold hover:text-red-600"
+        >
           Red Tetris
         </Link>
       </FlexBox>
