@@ -2,7 +2,7 @@ import redismock from "redis-mock";
 import { quitRedis, setRedis, deleteKeyFromRedis } from "storage";
 import Response from "models/response";
 import { LOBBY } from "../../../../src/config/actions/lobby";
-import { kickedFromLobby, pushLobby, getLobbies } from "storage/lobbies";
+import { kickedFromLobby, pushLobby } from "storage/lobbies";
 import { lobby1mock, lobby2mock } from "../../mocks";
 
 beforeAll(() => {
