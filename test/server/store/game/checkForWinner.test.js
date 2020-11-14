@@ -54,4 +54,8 @@ describe("checkForWinner function", () => {
 
     expect(await checkForWinner(game.id)).toEqual(game.players[1]);
   });
+
+  test("Should null : no game", async () => {
+    expect(await checkForWinner(game1mock.id)).toBeNull();
+  });
 });
