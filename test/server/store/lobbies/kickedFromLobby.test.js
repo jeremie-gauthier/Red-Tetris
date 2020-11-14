@@ -35,7 +35,7 @@ describe("kickedFromLobby function", () => {
     );
   });
 
-  test("Should return an Error response `Lobby doesn't exists!` ", async () => {
+  test("Should return an Error response `Lobby doesn't exists!`", async () => {
     await pushLobby(lobby2mock, lobby2mock.owner.socketId);
 
     expect(
