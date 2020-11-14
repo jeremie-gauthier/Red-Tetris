@@ -33,11 +33,10 @@ describe("setLobbyWon function", () => {
     await pushLobby(lobby, lobby1mock.owner.socketId);
 
     const lobbyResponse = deepCopy(lobby1mock);
-    lobby.owner = lobby1mock.players[1];
-    await pushLobby(lobby, lobby1mock.owner.socketId);
+    lobbyResponse.owner = lobby1mock.players[1].player;
 
     expect(
-      await setLobbyWon(lobby1mock.id, lobby1mock.players[0].player),
+      await setLobbyWon(lobby1mock.id, lobby1mock.players[1].player),
     ).toEqual(lobbyResponse);
   });
 
