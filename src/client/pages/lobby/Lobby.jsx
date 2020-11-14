@@ -146,7 +146,6 @@ const Buttons = ({ state, owner }) => {
   };
 
   const deleteLobby = (lobbyId, playerId) => {
-    // check for ownerId?
     socket.emit(LOBBIES.DELETE, { lobbyId, ownerId: playerId });
   };
 

@@ -5,7 +5,7 @@ import "./Lobby.scss";
 import { socket } from "store/middleware";
 import { useTranslation } from "react-i18next";
 
-export default function Chat({ state }) {
+export default function Chat({ height, state }) {
   const { t } = useTranslation();
   const [message, setMessage] = React.useState("");
 
@@ -42,7 +42,7 @@ export default function Chat({ state }) {
     <FlexBox
       direction="col"
       wrap="no-wrap"
-      height="2/5"
+      height={height}
       width="full"
       className="justify-between"
     >

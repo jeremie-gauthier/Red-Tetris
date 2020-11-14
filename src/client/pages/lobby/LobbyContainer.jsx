@@ -54,7 +54,7 @@ export default function LobbyContainer() {
         {!isEmpty(state.lobby) && (
           <FlexBox height="full" width="full">
             <Lobby state={state} dispatch={dispatch} />
-            <Chat state={state} dispatch={dispatch} />
+            <Chat height="2/5" state={state} />
           </FlexBox>
         )}
       </FlexBox>

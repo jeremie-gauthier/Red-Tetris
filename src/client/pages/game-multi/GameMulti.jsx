@@ -27,6 +27,7 @@ import { Score, LinesRemoved, Level, Timer } from "components/tetris/Stats";
 import SoundToggler from "components/sound/SoundToggler";
 import Crown from "assets/img/crown.png";
 import LooseTag from "components/tetris/LooseTag";
+import Chat from "pages/lobby/Chat";
 
 export default function GameMulti() {
   const { state: stateStore, dispatch: dispatchStore } = React.useContext(
@@ -198,6 +199,9 @@ export default function GameMulti() {
 
         <div className="w-1/12" />
         <ScatteringGrid />
+        <div className="fixed bottom-0 right-0 w-96 h-64">
+          <Chat height="full" state={stateStore} />
+        </div>
       </FlexBox>
     </>
   );

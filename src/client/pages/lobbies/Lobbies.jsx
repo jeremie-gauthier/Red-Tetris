@@ -5,6 +5,7 @@ import LobbyItem from "./LobbyItem";
 import CreateLobby from "./CreateLobby";
 import Overlay from "components/overlay/Overlay";
 import SearchLobby from "./SearchLobby";
+import Helper from "./Helper";
 import { StoreContext } from "store";
 import "./Lobbies.scss";
 import { socket, socketRoomsOn } from "store/middleware";
@@ -16,12 +17,15 @@ import { LOBBIES } from "../../../config/actions/lobbies";
 import { isEmpty } from "helpers/common";
 import { useTranslation } from "react-i18next";
 import ButtonSpecial from "components/button/ButtonSpecial";
+import HelpImg from "assets/img/help.png";
 
 export default function Lobbies() {
   const { t } = useTranslation();
   const { state, dispatch } = React.useContext(StoreContext);
   const { navigate } = useNavigate();
   const [hasClickedCreate, setHasClickedCreate] = React.useState(false);
+  const [hasClickedHelper, setHasClickedHelper] = React.useState(false);
+
   const notify = (error) => toast.error(error);
 
   const lobbies = Object.values(state.lobbies || {});
@@ -89,7 +93,16 @@ export default function Lobbies() {
           />
         </Overlay>
       )}
-
+      {hasClickedHelper && (
+        <Overlay
+          data-testid="overlay_helper"
+          isOpen={hasClickedHelper}
+          close={() => setHasClickedHelper(false)}
+          className="create-modal"
+        >
+          <Helper close={() => setHasClickedHelper(false)} />
+        </Overlay>
+      )}
       <Link
         className="fixed top-0 left-0 pt-1 px-1 mt-1 ml-16
         text-sm border rounded shadow"
@@ -97,6 +110,11 @@ export default function Lobbies() {
       >
         {t("pages.lobbies.go_back_home")}
       </Link>
+      <img
+        src={HelpImg}
+        className="w-10 fixed bottom-0 left-0 pb-1 px-1 ml-1 mb-1 cursor-pointer"
+        onClick={() => setHasClickedHelper(true)}
+      />
 
       <SearchLobby
         searchedValue={searchedValue}
