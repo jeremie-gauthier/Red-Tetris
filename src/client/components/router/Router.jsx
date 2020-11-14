@@ -1,5 +1,12 @@
 import React from "react";
-import { HashRouter, Switch, Route } from "react-router-dom";
+import {
+  HashRouter,
+  Switch,
+  Route,
+  useLocation,
+  useHistory,
+  Redirect,
+} from "react-router-dom";
 import Home from "pages/home/Home";
 import Lobbies from "pages/lobbies/Lobbies";
 import Lobby from "pages/lobby/LobbyContainer";
@@ -12,6 +19,7 @@ import useNavigate from "hooks/useNavigate";
 import { LOBBIES } from "../../../config/actions/lobbies";
 import { socket } from "store/middleware";
 import { useTranslation } from "react-i18next";
+import usePrevious from "hooks/usePrevious";
 
 /*
  **   You can had any Route you need inside the <Switch />
@@ -22,18 +30,38 @@ import { useTranslation } from "react-i18next";
 export default function Router() {
   return (
     <HashRouter hashType="noslash">
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/single-player[solo]/game">
-          <GameContextProvider>
-            <LazyLoader LazyComponent={LazyGameSolo} />
-          </GameContextProvider>
-        </Route>
-        <ProtectedRoutes />
-      </Switch>
+      <SpiedRoutes />
     </HashRouter>
   );
 }
+
+const SpiedRoutes = () => {
+  const location = useLocation();
+  const history = useHistory();
+  const prevLocation = usePrevious(location);
+  const [shouldReload, setShouldReload] = React.useState(false);
+
+  React.useEffect(() => {
+    if (prevLocation !== undefined && history.action === "POP") {
+      setShouldReload(true);
+    }
+  }, [location.pathname]);
+
+  return (
+    <Switch>
+      <Route exact path="/" component={Home} />
+      {shouldReload && (
+        <Redirect to={{ pathname: "/", state: "forceRefresh" }} />
+      )}
+      <Route path="/single-player[solo]/game">
+        <GameContextProvider>
+          <LazyLoader LazyComponent={LazyGameSolo} />
+        </GameContextProvider>
+      </Route>
+      <ProtectedRoutes />
+    </Switch>
+  );
+};
 
 const ProtectedRoutes = () => {
   const { state } = React.useContext(StoreContext);
