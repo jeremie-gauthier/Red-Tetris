@@ -1,5 +1,8 @@
-.button-special-wrapper {
+.button-special {
   position: relative;
+  transition: all 300ms ease-in-out;
+  user-select: none;
+  z-index: 2;
 }
 
 .button-special-tetro {

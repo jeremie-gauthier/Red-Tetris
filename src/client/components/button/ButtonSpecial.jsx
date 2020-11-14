@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./ButtonSpecial.scss";
-import "./Button.scss";
 import Tetromino from "components/tetrominoes/Tetrominoes";
 import { randomPick, randomRangeNumber } from "helpers/common";
 import { pieces } from "constants/tetrominoes";
@@ -9,7 +8,13 @@ import { nanoid } from "nanoid";
 
 const count = {};
 
-export default function ButtonSpecial({ onClick, className, children }) {
+export default function ButtonSpecial({
+  onClick,
+  className,
+  children,
+  width,
+  ...rest
+}) {
   const [obj, setObj] = React.useState({});
 
   const newAnim = (numberPieces) => {
@@ -49,7 +54,7 @@ export default function ButtonSpecial({ onClick, className, children }) {
   const deleteKey = (key) => {
     const oldObj = { ...obj };
     oldObj[key] = undefined;
-    delete count[key];
+    Reflect.deleteProperty(count, key);
     setObj(oldObj);
   };
 
@@ -66,7 +71,7 @@ export default function ButtonSpecial({ onClick, className, children }) {
   };
 
   return (
-    <div className="button-special-wrapper">
+    <div className={`${width ? `w-${width}` : ""} relative`}>
       {Object.entries(obj).map(([key, tab]) =>
         tab?.map((el, index) => (
           <RandomTetromino
@@ -80,7 +85,9 @@ export default function ButtonSpecial({ onClick, className, children }) {
         )),
       )}
       <button
-        className={className}
+        className={`${className} button-special ${
+          width ? "w-full h-full" : ""
+        }`}
         onClick={() => {
           newAnim(randomRangeNumber(5, 10));
           if (onClick) {
@@ -88,6 +95,7 @@ export default function ButtonSpecial({ onClick, className, children }) {
           }
         }}
         onMouseEnter={() => newAnim(randomRangeNumber(1, 2))}
+        {...rest}
       >
         {children}
       </button>
@@ -99,6 +107,7 @@ ButtonSpecial.propTypes = {
   onClick: PropTypes.func,
   name: PropTypes.string,
   children: PropTypes.any,
+  width: PropTypes.string,
 };
 
 const RandomTetromino = ({ size, style, color, shape, countKey, ...rest }) => {
