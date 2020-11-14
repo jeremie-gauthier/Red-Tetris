@@ -17,7 +17,7 @@ describe("Overlay", () => {
     );
 
     expect(effectStub).toHaveBeenCalledTimes(1);
-    expect(addEvtStub).toHaveBeenCalledTimes(1);
+    expect(addEvtStub).toHaveBeenCalledTimes(2);
     expect(removeEvtStub).not.toHaveBeenCalled();
     expect(screen.getByText(/Hello Overlay/i)).toBeInTheDocument();
 
@@ -38,7 +38,7 @@ describe("Overlay", () => {
     );
 
     expect(effectStub).toHaveBeenCalledTimes(2);
-    expect(addEvtStub).toHaveBeenCalledTimes(2);
+    expect(addEvtStub).toHaveBeenCalledTimes(3);
     expect(screen.queryByText(/Hello Overlay/i)).not.toBeInTheDocument();
   });
 
