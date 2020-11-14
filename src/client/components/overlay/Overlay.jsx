@@ -17,7 +17,11 @@ export default function Overlay({ children, isOpen, close, ...rest }) {
     };
   }, []);
 
-  return isOpen ? <Modal {...rest}>{children}</Modal> : null;
+  return isOpen ? (
+    <Modal close={close} {...rest}>
+      {children}
+    </Modal>
+  ) : null;
 }
 
 Overlay.propTypes = {

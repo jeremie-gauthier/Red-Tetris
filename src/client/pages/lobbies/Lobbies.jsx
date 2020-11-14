@@ -100,7 +100,7 @@ export default function Lobbies() {
           close={() => setHasClickedHelper(false)}
           className="create-modal"
         >
-          <Helper close={() => setHasClickedHelper(false)} />
+          <Helper />
         </Overlay>
       )}
       <Link
