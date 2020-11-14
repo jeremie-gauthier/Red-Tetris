@@ -71,7 +71,7 @@ export const joinLobby = async (player, lobbyId) => {
       "There is a problem with your player!",
     );
   }
-  const alreadyOnLobby = playerIsOnLobbyByPlayerId(lobbies, player.id);
+  const alreadyOnLobby = playerIsOnLobbyByPlayerId(lobbies, player?.id);
   if (alreadyOnLobby) {
     return Response.error(LOBBY.SUBSCRIBE, "You already are in another lobby!");
   }
