@@ -28,10 +28,10 @@ export default function SoundToggler({ speedRate, ...rest }) {
 
       return !oldState;
     });
-  }, []);
+  }, [state.alive]);
 
   const options = {
-    volume: 0.2,
+    volume: 0.15,
     loop: true,
     playbackRate: speedRate,
   };
@@ -39,15 +39,14 @@ export default function SoundToggler({ speedRate, ...rest }) {
   const [playGameOver, pauseGameOver] = useAudio(TetrisGameOverTheme);
 
   React.useEffect(() => {
-    playMain();
-  }, []);
-
-  React.useEffect(() => {
-    if (state.alive === false && soundState) {
-      pauseMain();
+    if (state.alive && soundState) {
+      playMain();
+      return () => pauseMain();
+    } else if (!state.alive && soundState) {
       playGameOver();
+      return () => pauseGameOver();
     }
-  }, [state.alive]);
+  }, [state.alive, soundState]);
 
   React.useEffect(() => {
     setOptions({ ...options, playbackRate: speedRate });
