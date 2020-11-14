@@ -4,7 +4,6 @@ import Response from "models/response";
 import { LOBBY } from "../../../../src/config/actions/lobby";
 import { kickedFromLobby, pushLobby, getLobbies } from "storage/lobbies";
 import { lobby1mock, lobby2mock } from "../../mocks";
-import { deepCopy } from "helpers/functional";
 
 beforeAll(() => {
   setRedis(redismock.createClient());
@@ -18,7 +17,7 @@ beforeEach(() => {
   deleteKeyFromRedis("lobbies");
 });
 
-describe("leaveLobby function", () => {
+describe("kickedFromLobby function", () => {
   test("Should return a Success response", async () => {
     await pushLobby(lobby1mock, lobby1mock.owner.socketId);
     await pushLobby(lobby2mock, lobby2mock.owner.socketId);
