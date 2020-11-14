@@ -8,6 +8,7 @@ import { socket } from "store/middleware";
 import { initialState as defaultStore } from "reducers/store";
 import { LOBBIES } from "../../../src/config/actions/lobbies";
 import { LOBBY } from "../../../src/config/actions/lobby";
+import { MemoryRouter } from "react-router-dom";
 
 describe("Lobbies", () => {
   const socketStub = jest
@@ -20,6 +21,7 @@ describe("Lobbies", () => {
       <StoreContext.Provider value={{ state: defaultStore, dispatch: {} }}>
         <Lobbies />
       </StoreContext.Provider>,
+      { wrapper: MemoryRouter },
     );
 
     expect(screen.getByText(/Aucun salon trouvé./i)).toBeInTheDocument();
@@ -31,6 +33,7 @@ describe("Lobbies", () => {
       <StoreContext.Provider value={{ state: defaultStore, dispatch: {} }}>
         <Lobbies />
       </StoreContext.Provider>,
+      { wrapper: MemoryRouter },
     );
 
     expect(
@@ -70,6 +73,7 @@ describe("Lobbies", () => {
       <StoreContext.Provider value={{ state: customStore, dispatch: {} }}>
         <Lobbies />
       </StoreContext.Provider>,
+      { wrapper: MemoryRouter },
     );
 
     const inputFilterLobbies = screen.getByPlaceholderText(
@@ -104,6 +108,7 @@ describe("Lobbies", () => {
       <StoreContext.Provider value={{ state: customStore, dispatch: {} }}>
         <Lobbies />
       </StoreContext.Provider>,
+      { wrapper: MemoryRouter },
     );
 
     const mockLobby = screen.getByText(/Mordor/i);
