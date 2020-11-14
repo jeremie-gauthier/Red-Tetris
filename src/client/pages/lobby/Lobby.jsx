@@ -8,6 +8,7 @@ import {
   setLobbyResponse,
   resetMessages,
 } from "actions/store";
+import { useHistory } from "react-router-dom";
 import useNavigate from "hooks/useNavigate";
 import "./Lobby.scss";
 import { socket } from "store/middleware";
@@ -17,9 +18,10 @@ import Crown from "assets/img/crown.png";
 import RedCross from "assets/img/red-cross.png";
 import ButtonSpecial from "components/button/ButtonSpecial";
 
-export default function Lobby({ open, state, dispatch }) {
+export default function Lobby({ state, dispatch }) {
   const notify = (error) => toast.error(error);
   const { navigate } = useNavigate();
+  const history = useHistory();
 
   React.useEffect(() => {
     if (state.lobbyResponse.action === LOBBY.UNSUBSCRIBE) {
@@ -33,20 +35,14 @@ export default function Lobby({ open, state, dispatch }) {
     } else if (state.lobbyResponse.action === LOBBY.READY) {
       if (state.lobbyResponse.type === "error") {
         notify(state?.lobbyResponse?.reason);
-      } else if (state.lobbyResponse.type === "success") {
-        console.log("Ready was set to true or false!");
       }
     } else if (state.lobbyResponse.action === LOBBY.START) {
       if (state.lobbyResponse.type === "error") {
         notify(state?.lobbyResponse?.reason);
-      } else if (state.lobbyResponse.type === "success") {
-        console.log("Game successfully launched!");
       }
     } else if (state.lobbyResponse.action === LOBBY.KICK) {
       if (state.lobbyResponse.type === "error") {
         notify(state?.lobbyResponse?.reason);
-      } else if (state.lobbyResponse.type === "success") {
-        console.log("Player kicked from lobby!");
       }
     }
   }, [state.lobbyResponse]);
@@ -64,8 +60,7 @@ export default function Lobby({ open, state, dispatch }) {
   }, [state.lobbiesResponse]);
 
   React.useEffect(() => {
-    if (Object.keys(state.game).length !== 0) {
-      open();
+    if (Object.keys(state.game).length !== 0 && history.action !== "POP") {
       navigate("/game-multi");
     }
   }, [state.game]);

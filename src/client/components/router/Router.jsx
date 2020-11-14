@@ -16,8 +16,6 @@ import FlexBox from "components/flexbox/FlexBox";
 import { GameContextProvider } from "store";
 import { StoreContext } from "store";
 import useNavigate from "hooks/useNavigate";
-import { LOBBIES } from "../../../config/actions/lobbies";
-import { socket } from "store/middleware";
 import { useTranslation } from "react-i18next";
 import usePrevious from "hooks/usePrevious";
 
@@ -41,10 +39,11 @@ const SpiedRoutes = () => {
   const location = useLocation();
   const history = useHistory();
   const prevLocation = usePrevious(location);
+  const { navigate } = useNavigate();
 
   React.useEffect(() => {
     if (prevLocation !== undefined && history.action === "POP") {
-      history.push("/force-refresh");
+      navigate("/force-refresh");
     }
   }, [location.pathname]);
 
@@ -54,7 +53,7 @@ const SpiedRoutes = () => {
       <Route exact path="/force-refresh">
         <ForceRefresh />
       </Route>
-      <Route path="/single-player[solo]/game">
+      <Route exact path="/single-player[solo]/game">
         <GameContextProvider>
           <LazyLoader LazyComponent={LazyGameSolo} />
         </GameContextProvider>
@@ -76,7 +75,6 @@ const ProtectedRoutes = () => {
     if (!Object.keys(state.player).length) {
       navigate("/");
     }
-    socket.emit(LOBBIES.SUBSCRIBE);
   }, []);
 
   return (

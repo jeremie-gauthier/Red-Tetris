@@ -30,7 +30,7 @@ const runSocketIo = (httpServer) => {
 
     /* Test on reconnect */
     socket.on("reconnect", (attemptNumber) => {
-      loginfo(socket.id, "tried to reconnect... attemptNumber:", attemptNumber);
+      loginfo(socket.id, "Tried to reconnect... attemptNumber:", attemptNumber);
     });
 
     handlers.forEach((handler) => {

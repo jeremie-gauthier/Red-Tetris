@@ -53,7 +53,7 @@ export default function LobbyContainer() {
         </FlexBox>
         {!isEmpty(state.lobby) && (
           <FlexBox height="full" width="full">
-            <Lobby state={state} open={open} dispatch={dispatch} />
+            <Lobby state={state} dispatch={dispatch} />
             <Chat state={state} dispatch={dispatch} />
           </FlexBox>
         )}

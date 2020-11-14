@@ -11,6 +11,4 @@ export const handlerOnDisconnect = async (socket, reason) => {
   eventEmitter.emit(event.player.disconnect, {
     socket,
   });
-
-  loginfo("Player with socketId", socket.id, "disconnected!");
 };

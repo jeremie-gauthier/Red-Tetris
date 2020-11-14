@@ -23,6 +23,4 @@ export const handlerDeletePlayer = async (socket, { socketId }) => {
   eventEmitter.emit(event.player.disconnect, {
     socket,
   });
-
-  loginfo("Player with socketId", socketId, "has been deleted!");
 };

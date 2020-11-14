@@ -12,6 +12,7 @@ import useNavigate from "hooks/useNavigate";
 import { setLobby, setLobbyResponse } from "actions/store";
 import { toast } from "react-toastify";
 import { LOBBY } from "../../../config/actions/lobby";
+import { LOBBIES } from "../../../config/actions/lobbies";
 import { isEmpty } from "helpers/common";
 import { useTranslation } from "react-i18next";
 import ButtonSpecial from "components/button/ButtonSpecial";
@@ -43,6 +44,10 @@ export default function Lobbies() {
 
   React.useEffect(() => {
     socketRoomsOn(dispatch);
+    socket.emit(LOBBIES.SUBSCRIBE);
+    return () => {
+      socket.emit(LOBBIES.UNSUBSCRIBE);
+    };
   }, []);
 
   React.useEffect(() => {
