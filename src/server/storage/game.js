@@ -77,7 +77,8 @@ const nbPlayersRemaining = (players) => {
 const isWinnerLastPlayer = (players) => {
   const winner = players.find((el) => el.loser === false);
   const test = players.some(
-    (el) => el.player.id !== winner.id && el.score > winner.score,
+    (el) =>
+      el.player.id !== winner.id && parseInt(el.score) > parseInt(winner.score),
   );
   if (test) {
     return null;
@@ -85,12 +86,5 @@ const isWinnerLastPlayer = (players) => {
   return winner;
 };
 
-const getHighestScorePlayer = (players) => {
-  let winner = players[0];
-  for (let i = 1; i < players.length; ++i) {
-    if (players[i].score > winner.score) {
-      winner = players[i];
-    }
-  }
-  return winner;
-};
+const getHighestScorePlayer = (players) =>
+  players.reduce((c, el) => (parseInt(c.score) > parseInt(el.score) ? c : el));
