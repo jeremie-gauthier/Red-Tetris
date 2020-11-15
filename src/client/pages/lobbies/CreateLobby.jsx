@@ -6,6 +6,7 @@ import { LOBBIES } from "../../../config/actions/lobbies";
 import { socket } from "store/middleware";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import "./Lobbies.scss";
 
 export default function CreateLobby({ close, state, dispatch }) {
   const { t } = useTranslation();
@@ -46,6 +47,7 @@ export default function CreateLobby({ close, state, dispatch }) {
   const createLobby = () => {
     if (
       myLobby &&
+      myLobby?.maxPlayer &&
       myLobby.maxPlayer >= 2 &&
       myLobby.maxPlayer <= 5 &&
       myLobby.owner &&
@@ -68,6 +70,8 @@ export default function CreateLobby({ close, state, dispatch }) {
     createLobby();
   };
 
+  const isDisabled = !myLobby?.name?.length || !myLobby?.maxPlayer;
+
   return (
     <div>
       <h1 className="text-center">{t("pages.lobbies.create_lobby")}</h1>
@@ -75,9 +79,7 @@ export default function CreateLobby({ close, state, dispatch }) {
         <FlexBox direction="col" className="items-center border-red-400 py-2">
           <form onSubmit={submit}>
             <input
-              className="bg-white focus:outline-none focus:shadow-outline
-            border border-gray-300 rounded-lg mb-2 mr-3 py-1 px-2
-            block w-full appearance-none leading-normal"
+              className="create-input"
               name="name"
               placeholder={t("pages.lobbies.lobby_name")}
               value={myLobby?.name || ""}
@@ -86,9 +88,7 @@ export default function CreateLobby({ close, state, dispatch }) {
             />
             <span className="mt-1">{t("pages.lobbies.max_players")}:</span>
             <select
-              className="bg-white focus:outline-none focus:shadow-outline
-            border border-gray-300 rounded-lg mb-2 mr-3 py-1
-            px-2 block w-full appearance-none leading-normal"
+              className="create-input"
               onChange={handleLobby}
               name="maxPlayer"
               defaultValue={4}
@@ -107,9 +107,10 @@ export default function CreateLobby({ close, state, dispatch }) {
             </select>
             <button
               data-testid="create_new_lobby"
-              disabled={!myLobby?.name?.length || !myLobby?.maxPlayer}
-              className="flex-shrink-0 bg-red-400 hover:bg-red-600
-            text-sm text-white py-1 px-2 rounded mt-10"
+              className={`${
+                isDisabled ? "disabled-btn text-white" : "action-btn text-white"
+              } `}
+              disabled={isDisabled}
               type="submit"
             >
               {t("pages.lobbies.create_lobby")}

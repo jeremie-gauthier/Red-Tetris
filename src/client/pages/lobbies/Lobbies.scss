@@ -30,7 +30,7 @@
 }
 
 .action-btn {
-  @apply text-center bg-red-400 rounded-lg shadow-lg py-1;
+  @apply text-center bg-red-400 rounded-lg shadow-lg py-1 px-2;
 
   &:hover {
     @apply bg-red-600;
@@ -38,5 +38,9 @@
 }
 
 .disabled-btn {
-  @apply text-center cursor-default rounded-lg shadow-lg bg-gray-400;
+  @apply text-center cursor-default rounded-lg shadow-lg bg-gray-400 py-1 px-2;
+}
+
+.create-input {
+  @apply bg-white border border-gray-300 rounded-lg mb-2 mr-3 py-1 px-2 block w-full appearance-none leading-normal;
 }
