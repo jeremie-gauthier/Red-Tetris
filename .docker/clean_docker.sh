@@ -1,1 +1,5 @@
-sudo docker system prune && sudo docker image prune -a && sudo docker volume prune
+#!/bin/sh
+
+docker system prune
+docker image prune -a
+docker volume prune
