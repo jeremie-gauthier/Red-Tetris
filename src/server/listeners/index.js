@@ -89,7 +89,7 @@ eventEmitter.on(event.player.disconnect, async ({ socket }) => {
     console.log("lobbyId2", lobbyId2);
     socket.leave(`${GROUP_DOMAIN}:lobby-${lobbyId2}`);
     eventEmitter.emit(event.lobby.change, {
-      lobbyId2,
+      lobbyId: lobbyId2,
     });
     eventEmitter.emit(event.lobbies.change);
   }
