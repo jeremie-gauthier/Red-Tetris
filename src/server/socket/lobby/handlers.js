@@ -23,6 +23,16 @@ export const handlerSubscribeLobby = async (socket, { lobbyId, playerId }) => {
   if (response.type === "success") {
     socket.join(`${GROUP_DOMAIN}:lobby-${lobbyId}`);
 
+    const messageObject = new Message({
+      message: `${player.name} has joined the lobby`,
+      sender: "",
+    });
+
+    eventEmitter.emit(event.message.new, {
+      lobbyId,
+      messageObject,
+    });
+
     eventEmitter.emit(event.lobby.change, {
       lobbyId,
     });
@@ -40,6 +50,16 @@ export const handlerUnsubscribeLobby = async (
 
   if (response.type === "success") {
     socket.leave(`${GROUP_DOMAIN}:lobby-${lobbyId}`);
+
+    const messageObject = new Message({
+      message: "A player has left the lobby",
+      sender: "",
+    });
+
+    eventEmitter.emit(event.message.new, {
+      lobbyId,
+      messageObject,
+    });
 
     eventEmitter.emit(event.lobby.change, {
       lobbyId,
