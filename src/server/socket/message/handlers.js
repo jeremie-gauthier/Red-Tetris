@@ -7,7 +7,7 @@ export const handlerSendMessage = async (
   { message, sender, lobbyId },
 ) => {
   if (message && message.trim() !== "" && message.length <= 150) {
-    const messageObject = { id: nanoid(), message, sender };
+    const messageObject = { id: nanoid(), message: message.trim(), sender };
     eventEmitter.emit(event.message.new, {
       lobbyId,
       messageObject,
