@@ -1,6 +1,6 @@
 import socketIOClient from "socket.io-client";
 import { setupSocketPlayer, removeSocketPlayer } from "store/middleware/player";
-import { setupSocketRooms, removeSocketRooms } from "store/middleware/rooms";
+import { setupSocketRooms } from "store/middleware/rooms";
 import { setupSocketGame, removeSocketGame } from "store/middleware/game";
 
 const host = process.env.REACT_APP_SERVER_HOST || "0.0.0.0:3004";

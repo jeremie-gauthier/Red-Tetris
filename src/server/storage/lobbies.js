@@ -232,7 +232,11 @@ export const isOnLobbyPlayerId = async (playerId) => {
   const lobbies = (await getComplexObjectFromRedis("lobbies")) ?? {};
 
   const isOnLobby = playerIsOnLobbyByPlayerId(lobbies, playerId);
-  return isOnLobby;
+  if (isOnLobby) {
+    const lobbyId = getLobbyIdByPlayerId(lobbies, playerId);
+    return lobbyId;
+  }
+  return null;
 };
 
 export const clearPlayerFromLobbies = async (playerId) => {
@@ -270,7 +274,6 @@ export const setLobbyWon = async (lobbyId, winner) => {
   if (!lobby) {
     return null;
   }
-
   lobby.isPlaying = false;
   const owner = isOwner(lobby, winner.id);
 

@@ -64,20 +64,19 @@ eventEmitter.on(event.lobby.kicked, async ({ socketId, lobbyId }) => {
 eventEmitter.on(event.player.disconnect, async ({ socket }) => {
   socket.leave(GROUP.LOBBIES);
   const playerId = await getPlayerId(socket.id);
-  const lobbyId = await isOnLobbyPlayerId(playerId);
-
-  if (lobbyId) {
-    const lobbyPlaying = await isLobbyPlaying(lobbyId);
+  const gameId = await isOnLobbyPlayerId(playerId);
+  if (gameId && gameId !== undefined && gameId !== null) {
+    const lobbyPlaying = await isLobbyPlaying(gameId);
     if (lobbyPlaying) {
-      const loser = await hasLost(lobbyId, playerId);
+      const loser = await hasLost(gameId, playerId);
       if (!loser) {
-        await setLoser(lobbyId, playerId);
+        await setLoser(gameId, playerId);
         eventEmitter.emit(event.game.lose, {
           socket,
           playerId,
-          gameId: lobbyId,
+          gameId,
         });
-        checkWinner(lobbyId);
+        checkWinner(gameId);
       }
     }
     const lobbyId = await clearPlayerFromLobbies(playerId);

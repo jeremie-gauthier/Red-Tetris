@@ -57,7 +57,6 @@ export const checkForWinner = async (gameId) => {
   if (Object.keys(game).length === 0) {
     return null;
   }
-
   const players = game.players;
 
   const playersRemaining = nbPlayersRemaining(players);
