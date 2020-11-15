@@ -12,6 +12,7 @@ import {
   getLobby,
   clearPlayerFromLobbies,
   isLobbyPlaying,
+  isOnLobbyPlayerId,
 } from "storage/lobbies";
 import { popPlayer, getPlayerId } from "storage/players";
 import { checkWinner } from "socket/game/handlers";
@@ -63,7 +64,8 @@ eventEmitter.on(event.lobby.kicked, async ({ socketId, lobbyId }) => {
 eventEmitter.on(event.player.disconnect, async ({ socket }) => {
   socket.leave(GROUP.LOBBIES);
   const playerId = await getPlayerId(socket.id);
-  const lobbyId = await clearPlayerFromLobbies(playerId);
+  const lobbyId = await isOnLobbyPlayerId(playerId);
+
   if (lobbyId) {
     const lobbyPlaying = await isLobbyPlaying(lobbyId);
     if (lobbyPlaying) {
@@ -78,6 +80,7 @@ eventEmitter.on(event.player.disconnect, async ({ socket }) => {
         checkWinner(lobbyId);
       }
     }
+    const lobbyId = await clearPlayerFromLobbies(playerId);
     socket.leave(`${GROUP_DOMAIN}:lobby-${lobbyId}`);
     eventEmitter.emit(event.lobby.change, {
       lobbyId,

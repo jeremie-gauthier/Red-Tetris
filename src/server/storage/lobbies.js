@@ -228,6 +228,13 @@ export const startGame = async (playerId, lobbyId) => {
   return Response.success(LOBBY.START, {});
 };
 
+export const isOnLobbyPlayerId = async (playerId) => {
+  const lobbies = (await getComplexObjectFromRedis("lobbies")) ?? {};
+
+  const isOnLobby = playerIsOnLobbyByPlayerId(lobbies, playerId);
+  return isOnLobby;
+};
+
 export const clearPlayerFromLobbies = async (playerId) => {
   const lobbies = (await getComplexObjectFromRedis("lobbies")) ?? {};
 
