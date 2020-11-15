@@ -55,14 +55,12 @@ export const checkWinner = async (gameId) => {
   const winner = await checkForWinner(gameId);
 
   if (winner) {
-    console.log("There is a winner !");
     eventEmitter.emit(event.game.winner, {
       gameId,
       winner,
     });
 
     const game = await getGame(gameId);
-    console.log("There is a winner and I got game", game);
 
     if (Object.keys(game).length !== 0) {
       if ((await setLobbyWon(game.id, winner.player)) !== null) {

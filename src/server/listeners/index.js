@@ -64,32 +64,25 @@ eventEmitter.on(event.lobby.kicked, async ({ socketId, lobbyId }) => {
 eventEmitter.on(event.player.disconnect, async ({ socket }) => {
   socket.leave(GROUP.LOBBIES);
   const playerId = await getPlayerId(socket.id);
-  console.log("playerId: ", playerId);
-  const lobbyId = await isOnLobbyPlayerId(playerId);
-  console.log("there is a disconnectino");
-  if (lobbyId !== undefined && lobbyId !== null) {
-    console.log("there is a lobbyid", lobbyId);
-    const lobbyPlaying = await isLobbyPlaying(lobbyId);
-    console.log(lobbyPlaying);
+  const gameId = await isOnLobbyPlayerId(playerId);
+  if (gameId && gameId !== undefined && gameId !== null) {
+    const lobbyPlaying = await isLobbyPlaying(gameId);
     if (lobbyPlaying) {
-      console.log("there is a lobby playing");
-      const loser = await hasLost(lobbyId, playerId);
+      const loser = await hasLost(gameId, playerId);
       if (!loser) {
-        console.log("player has not lost");
-        await setLoser(lobbyId, playerId);
+        await setLoser(gameId, playerId);
         eventEmitter.emit(event.game.lose, {
           socket,
           playerId,
-          gameId: lobbyId,
+          gameId,
         });
-        checkWinner(lobbyId);
+        checkWinner(gameId);
       }
     }
-    const lobbyId2 = await clearPlayerFromLobbies(playerId);
-    console.log("lobbyId2", lobbyId2);
-    socket.leave(`${GROUP_DOMAIN}:lobby-${lobbyId2}`);
+    const lobbyId = await clearPlayerFromLobbies(playerId);
+    socket.leave(`${GROUP_DOMAIN}:lobby-${lobbyId}`);
     eventEmitter.emit(event.lobby.change, {
-      lobbyId: lobbyId2,
+      lobbyId,
     });
     eventEmitter.emit(event.lobbies.change);
   }

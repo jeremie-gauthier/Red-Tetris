@@ -61,20 +61,9 @@ export const checkForWinner = async (gameId) => {
 
   const playersRemaining = nbPlayersRemaining(players);
   if (playersRemaining === 1) {
-    const testWinner = isWinnerLastPlayer(players);
-    if (testWinner !== null) {
-      console.log("i am checking for winner and I found one !");
-      console.log(testWinner);
-    }
-    return testWinner;
+    return isWinnerLastPlayer(players);
   } else if (playersRemaining === 0) {
-    const testWinner2 = getHighestScorePlayer(players);
-    if (testWinner2 !== null) {
-      console.log("i am checking for winner and I found one !");
-      console.log(testWinner2);
-    }
-
-    return testWinner2;
+    return getHighestScorePlayer(players);
   }
   return null;
 };

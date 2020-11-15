@@ -66,7 +66,6 @@ export const popLobby = async (lobbyId, ownerId) => {
 export const joinLobby = async (player, lobbyId) => {
   const lobbies = (await getComplexObjectFromRedis("lobbies")) ?? {};
   if (!player || player === null) {
-    console.log(player);
     return Response.error(
       LOBBY.SUBSCRIBE,
       "There is a problem with your player!",
@@ -245,12 +244,9 @@ export const clearPlayerFromLobbies = async (playerId) => {
 
   const isOnLobby = playerIsOnLobbyByPlayerId(lobbies, playerId);
   if (isOnLobby) {
-    console.log("clearPlayerFromLobbies is on lobby ok");
     const lobbyId = getLobbyIdByPlayerId(lobbies, playerId);
     const response = await leaveLobby(playerId, lobbyId);
     if (response.type === "success") {
-      console.log("leave lobby ok ");
-
       return lobbyId;
     }
   }
@@ -261,7 +257,6 @@ export const isLobbyPlaying = async (lobbyId) => {
   const lobbies = (await getComplexObjectFromRedis("lobbies")) ?? {};
 
   const lobby = lobbies?.[lobbyId];
-  console.log("isLobbyPlaying lobby", lobby);
   if (!lobby) {
     return false;
   }
@@ -279,7 +274,6 @@ export const setLobbyWon = async (lobbyId, winner) => {
   if (!lobby) {
     return null;
   }
-  console.log("I am setting the lobby that won...");
   lobby.isPlaying = false;
   const owner = isOwner(lobby, winner.id);
 
@@ -288,8 +282,6 @@ export const setLobbyWon = async (lobbyId, winner) => {
       lobby.owner = winner;
     }
   }
-  console.log("Setting lobby as ", lobby);
-  console.log("Setting owner as ", lobby.owner);
 
   lobbies[lobbyId] = lobby;
   await setComplexObjectToRedis("lobbies", lobbies);
