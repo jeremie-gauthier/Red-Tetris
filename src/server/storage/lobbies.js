@@ -65,7 +65,7 @@ export const popLobby = async (lobbyId, ownerId) => {
 
 export const joinLobby = async (player, lobbyId) => {
   const lobbies = (await getComplexObjectFromRedis("lobbies")) ?? {};
-  if (player == null) {
+  if (!player || player === null) {
     return Response.error(
       LOBBY.SUBSCRIBE,
       "There is a problem with your player!",

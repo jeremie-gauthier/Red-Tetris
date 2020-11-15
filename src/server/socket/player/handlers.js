@@ -19,7 +19,7 @@ export const handlerCreatePlayer = async (socket, { name }) => {
   }
 };
 
-export const handlerDeletePlayer = async (socket, { socketId }) => {
+export const handlerDeletePlayer = async (socket) => {
   eventEmitter.emit(event.player.disconnect, {
     socket,
   });
