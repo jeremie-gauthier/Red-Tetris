@@ -281,6 +281,7 @@ export const setLobbyWon = async (lobbyId, winner) => {
     }
   }
   console.log("Setting lobby as ", lobby);
+  console.log("Setting owner as ", lobby.owner);
 
   lobbies[lobbyId] = lobby;
   await setComplexObjectToRedis("lobbies", lobbies);
