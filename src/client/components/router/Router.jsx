@@ -18,6 +18,7 @@ import { StoreContext } from "store";
 import useNavigate from "hooks/useNavigate";
 import { useTranslation } from "react-i18next";
 import usePrevious from "hooks/usePrevious";
+import { socket } from "store/middleware";
 
 /*
  **   You can had any Route you need inside the <Switch />
@@ -46,6 +47,12 @@ const SpiedRoutes = () => {
       navigate("/force-refresh");
     }
   }, [location.pathname]);
+
+  React.useEffect(() => {
+    if (!socket.connected) {
+      navigate("/force-refresh");
+    }
+  }, [socket.connected]);
 
   return (
     <>
