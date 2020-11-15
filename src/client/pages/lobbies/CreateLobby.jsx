@@ -10,7 +10,6 @@ import { useTranslation } from "react-i18next";
 export default function CreateLobby({ close, state, dispatch }) {
   const { t } = useTranslation();
   const [myLobby, setMyLobby] = React.useState({
-    hash: "test",
     maxPlayer: 4,
     owner: state.player,
   });
@@ -59,7 +58,6 @@ export default function CreateLobby({ close, state, dispatch }) {
       notify("Invalid lobby creation!");
     }
     setMyLobby({
-      hash: "test",
       maxPlayer: 4,
       owner: state.player,
     });
@@ -109,11 +107,7 @@ export default function CreateLobby({ close, state, dispatch }) {
             </select>
             <button
               data-testid="create_new_lobby"
-              disabled={
-                !myLobby?.hash?.length ||
-                !myLobby?.name?.length ||
-                !myLobby?.maxPlayer
-              }
+              disabled={!myLobby?.name?.length || !myLobby?.maxPlayer}
               className="flex-shrink-0 bg-red-400 hover:bg-red-600
             text-sm text-white py-1 px-2 rounded mt-10"
               type="submit"

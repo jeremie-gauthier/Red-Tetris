@@ -84,7 +84,6 @@ describe("Socket tests", () => {
     const player = await getPlayer(playerId);
 
     socketClient.emit("lobbies:add", {
-      hash: "hash",
       name: "lobby1",
       maxPlayer: 4,
       owner: player,
@@ -203,7 +202,6 @@ describe("Socket tests", () => {
     const playerId = await getPlayerId(socketClient.id);
     const player = await getPlayer(playerId);
     socketClient.emit("lobbies:add", {
-      hash: "hash",
       name: "lobby1",
       maxPlayer: 4,
       owner: player,

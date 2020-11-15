@@ -1,7 +1,6 @@
 import Joi from "joi";
 
 export const validationAddLobby = {
-  hash: Joi.string().required().description("The hash of the lobby"),
   name: Joi.string().required().description("The name of the lobby"),
   maxPlayer: Joi.number()
     .required()

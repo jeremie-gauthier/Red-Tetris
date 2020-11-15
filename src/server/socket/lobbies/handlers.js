@@ -5,11 +5,8 @@ import GROUP_DOMAIN, { GROUP } from "../../../config/actions/group";
 import eventEmitter from "listeners";
 import event from "listeners/events";
 
-export const handlerAddLobby = async (
-  socket,
-  { hash, name, maxPlayer, owner },
-) => {
-  const lobby = new Lobby({ hash, name, maxPlayer, owner });
+export const handlerAddLobby = async (socket, { name, maxPlayer, owner }) => {
+  const lobby = new Lobby({ name, maxPlayer, owner });
   const response = await pushLobby(lobby, socket.id);
   socket.emit(LOBBIES.RESPONSE, response);
 

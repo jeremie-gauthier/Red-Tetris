@@ -64,7 +64,6 @@ describe("Lobbies", () => {
       ...defaultStore,
       lobbies: {
         test: {
-          hash: "test",
           maxPlayer: "2",
           owner: {},
           name: "Mordor",
@@ -99,7 +98,6 @@ describe("Lobbies", () => {
       ...defaultStore,
       lobbies: {
         test: {
-          hash: "test",
           maxPlayer: "2",
           owner: {},
           name: "Mordor",
