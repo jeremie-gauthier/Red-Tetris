@@ -25,3 +25,15 @@
 .not-launchable {
   @apply bg-grey-400 cursor-default;
 }
+
+.chat-ul {
+  @apply overflow-y-scroll hide-scroll h-3/4 w-full px-2 shadow-lg bg-grey-100 rounded;
+}
+
+.chat-button {
+  @apply w-1/10 flex-shrink-0 bg-red-400 text-sm text-white py-1 px-2 rounded;
+
+  &:hover {
+    @apply bg-red-600;
+  }
+}

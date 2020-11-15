@@ -57,11 +57,7 @@ export default function Chat({ height, state }) {
         height="full"
         className="p-6 justify-around"
       >
-        <ul
-          id="chat"
-          className="overflow-y-scroll hide-scroll h-3/4 w-full
-          px-2 shadow-lg bg-grey-100 rounded"
-        >
+        <ul id="chat" className="chat-ul">
           {state.messages.map((message) => (
             <li
               key={message.id}
@@ -78,7 +74,7 @@ export default function Chat({ height, state }) {
             </li>
           ))}
         </ul>
-        <form onSubmit={submit} className="flex justify-between ">
+        <form onSubmit={submit} className="flex justify-between">
           <input
             placeholder={t("pages.lobby.type_message")}
             value={message}
@@ -86,11 +82,7 @@ export default function Chat({ height, state }) {
             className="w-89% shadow-lg pl-2 bg-grey-100"
             maxLength="150"
           />
-          <button
-            className="w-1/10 flex-shrink-0 bg-red-400 hover:bg-red-600
-            text-sm text-white py-1 px-2 rounded"
-            type="submit"
-          >
+          <button className="chat-button" type="submit">
             >
           </button>
         </form>
