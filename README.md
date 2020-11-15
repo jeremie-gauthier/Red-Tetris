@@ -6,6 +6,8 @@
 
 A JavaScript Full Stack project to recreate an online Tetris game.
 
+Online demo available here : https://redtetris.co
+
 ## Documentation
 
 See [documentation](./docs/README.md).
