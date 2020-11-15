@@ -10,6 +10,18 @@
   }
 }
 
+.user-input {
+  @apply bg-white border border-gray-300 rounded-lg mr-3 py-1 px-2 block w-full appearance-none leading-normal;
+}
+
+.user-button {
+  @apply bg-red-400 text-sm text-white p-2 rounded;
+
+  &:hover {
+    @apply bg-red-600;
+  }
+}
+
 .home-game-pad {
   @apply flex flex-col items-center justify-center h-32;
 }

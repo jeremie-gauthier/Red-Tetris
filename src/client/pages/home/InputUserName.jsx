@@ -8,6 +8,7 @@ import ButtonSpecial from "components/button/ButtonSpecial";
 import { socket, socketPlayerOn, socketPlayerOff } from "store/middleware";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import "./Home.scss";
 
 export default function InputUserName() {
   const { t } = useTranslation();
@@ -41,7 +42,12 @@ export default function InputUserName() {
 
   const createPlayer = (event) => {
     event.preventDefault();
-    socket.emit(PLAYER.CREATE, { name: playerName });
+    if (playerName && playerName.trim() !== "" && playerName.length > 0) {
+      socket.emit(PLAYER.CREATE, { name: playerName });
+    } else {
+      notify("Invalid username!");
+    }
+    setPlayerName("");
   };
 
   return (
@@ -51,19 +57,14 @@ export default function InputUserName() {
         onSubmit={createPlayer}
       >
         <input
-          className="bg-white focus:outline-none focus:shadow-outline
-          border border-gray-300 rounded-lg mr-3 py-1 px-2 block w-full
-          appearance-none leading-normal"
+          className="user-input"
           type="text"
           placeholder={t("pages.home.player_name")}
           value={playerName}
           onChange={handlePlayerName}
           autoFocus
         />
-        <ButtonSpecial
-          className="bg-red-400 hover:bg-red-600 text-sm text-white p-2 rounded"
-          type="submit"
-        >
+        <ButtonSpecial className="user-button" type="submit">
           {t("pages.home.new_player")}
         </ButtonSpecial>
       </form>
