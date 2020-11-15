@@ -170,7 +170,6 @@ eventEmitter.on(event.game.lose, ({ socket, playerId, gameId }) => {
 
 // Game Winner
 eventEmitter.on(event.game.winner, ({ winner, gameId }) => {
-  console.log("Listener is sending winner!");
   io.in(`${GROUP_DOMAIN}:game-${gameId}`).emit(GAME.WINNER, {
     winner,
   });
