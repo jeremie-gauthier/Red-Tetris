@@ -69,6 +69,7 @@ eventEmitter.on(event.player.disconnect, async ({ socket }) => {
   if (lobbyId && lobbyId !== null) {
     console.log("there is a lobbyid");
     const lobbyPlaying = await isLobbyPlaying(lobbyId);
+    console.log(lobbyPlaying);
     if (lobbyPlaying) {
       console.log("there is a lobby playing");
       const loser = await hasLost(lobbyId, playerId);
