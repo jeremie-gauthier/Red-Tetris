@@ -57,14 +57,24 @@ export const checkForWinner = async (gameId) => {
   if (Object.keys(game).length === 0) {
     return null;
   }
-
   const players = game.players;
 
   const playersRemaining = nbPlayersRemaining(players);
   if (playersRemaining === 1) {
-    return isWinnerLastPlayer(players);
+    const testWinner = isWinnerLastPlayer(players);
+    if (testWinner !== null) {
+      console.log("i am checking for winner and I found one !");
+      console.log(testWinner);
+    }
+    return testWinner;
   } else if (playersRemaining === 0) {
-    return getHighestScorePlayer(players);
+    const testWinner2 = getHighestScorePlayer(players);
+    if (testWinner2 !== null) {
+      console.log("i am checking for winner and I found one !");
+      console.log(testWinner2);
+    }
+
+    return testWinner2;
   }
   return null;
 };
