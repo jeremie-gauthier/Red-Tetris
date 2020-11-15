@@ -77,6 +77,12 @@ const ProtectedRoutes = () => {
     }
   }, []);
 
+  React.useEffect(() => {
+    if (state.panic) {
+      navigate("/force-refresh");
+    }
+  }, [state.panic]);
+
   return (
     <>
       <Route path="/rooms">

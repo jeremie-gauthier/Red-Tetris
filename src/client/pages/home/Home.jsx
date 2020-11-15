@@ -12,14 +12,26 @@ import AnimatedBackground from "./AnimatedBackground";
 import { useTranslation } from "react-i18next";
 import InputUserName from "./InputUserName";
 import "./Home.scss";
+import {
+  socketDisconnectOn,
+  socketPlayerOn,
+  socketPlayerOff,
+} from "store/middleware";
+import { StoreContext } from "store";
 
 export default function Home() {
   const location = useLocation();
+  const { dispatch } = React.useContext(StoreContext);
 
   React.useEffect(() => {
     if (location.state === "forceRefresh") {
       document.location.reload();
     }
+    socketPlayerOn(dispatch);
+    socketDisconnectOn(dispatch);
+    return () => {
+      socketPlayerOff();
+    };
   }, []);
 
   return (

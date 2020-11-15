@@ -5,7 +5,7 @@ import useNavigate from "hooks/useNavigate";
 import { setPlayer, setPlayerResponse } from "actions/store";
 import { PLAYER } from "../../../config/actions/player";
 import ButtonSpecial from "components/button/ButtonSpecial";
-import { socket, socketPlayerOn, socketPlayerOff } from "store/middleware";
+import { socket } from "store/middleware";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import "./Home.scss";
@@ -17,12 +17,7 @@ export default function InputUserName() {
   const { navigate } = useNavigate();
   const notify = (error) => toast.error(error);
 
-  React.useEffect(() => {
-    socketPlayerOn(dispatch);
-    return () => {
-      socketPlayerOff();
-    };
-  }, []);
+  React.useEffect(() => {}, []);
 
   const handlePlayerName = (e) => {
     setPlayerName(e.target.value);
