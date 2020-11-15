@@ -57,7 +57,7 @@ export default function Chat({ height, state }) {
         height="full"
         className="p-6 justify-around"
       >
-        <ul id="chat" className="chat-ul">
+        <ul id="chat" className="chat-ul hide-scroll">
           {state.messages.map((message) => (
             <li
               key={message.id}
