@@ -64,9 +64,10 @@ eventEmitter.on(event.lobby.kicked, async ({ socketId, lobbyId }) => {
 eventEmitter.on(event.player.disconnect, async ({ socket }) => {
   socket.leave(GROUP.LOBBIES);
   const playerId = await getPlayerId(socket.id);
+  console.log("playerId: ", playerId);
   const lobbyId = await isOnLobbyPlayerId(playerId);
   console.log("there is a disconnectino");
-  if (lobbyId && lobbyId !== null) {
+  if (lobbyId !== undefined && lobbyId !== null) {
     console.log("there is a lobbyid", lobbyId);
     const lobbyPlaying = await isLobbyPlaying(lobbyId);
     console.log(lobbyPlaying);
@@ -84,10 +85,11 @@ eventEmitter.on(event.player.disconnect, async ({ socket }) => {
         checkWinner(lobbyId);
       }
     }
-    const lobbyId = await clearPlayerFromLobbies(playerId);
+    const lobbyId2 = await clearPlayerFromLobbies(playerId);
+    console.log("lobbyId2", lobbyId2);
     socket.leave(`${GROUP_DOMAIN}:lobby-${lobbyId}`);
     eventEmitter.emit(event.lobby.change, {
-      lobbyId,
+      lobbyId2,
     });
     eventEmitter.emit(event.lobbies.change);
   }
