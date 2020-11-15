@@ -1,8 +1,7 @@
 import React from "react";
+import TETROMINOES from "../../../config/models/piece";
 
-import MOCK_TETROMINOES from "mocks/Tetrominoes";
-
-const lengthMockTetrominoes = MOCK_TETROMINOES.length;
+const lengthMockTetrominoes = TETROMINOES.length;
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -11,7 +10,7 @@ function getRandomInt(max) {
 function fetchFromMock(n) {
   const ret = [];
   for (let i = 0; i < n; i++) {
-    ret.push(MOCK_TETROMINOES[getRandomInt(lengthMockTetrominoes)]);
+    ret.push(TETROMINOES[getRandomInt(lengthMockTetrominoes)]);
   }
 
   return ret;
