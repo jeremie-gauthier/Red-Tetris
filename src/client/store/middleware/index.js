@@ -32,13 +32,6 @@ export function socketRoomsOn(dispatch) {
   }
 }
 
-export function socketRoomsOff() {
-  if (socketRooms) {
-    removeSocketRooms(socket);
-    socketRooms = false;
-  }
-}
-
 export function socketGameOn(dispatch) {
   if (!socketGame) {
     setupSocketGame(socket, dispatch);

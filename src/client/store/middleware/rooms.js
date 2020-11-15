@@ -48,13 +48,3 @@ export function setupSocketRooms(socket, dispatch) {
     dispatch(addMessage(data));
   });
 }
-
-export function removeSocketRooms(socket) {
-  socket.off(LOBBIES.PUBLISH);
-  socket.off(LOBBIES.RESPONSE);
-  socket.off(LOBBY.RESPONSE);
-  socket.off(LOBBY.PUBLISH);
-  socket.off(LOBBY.STARTED);
-  socket.off(PLAYERS.PUBLISH);
-  socket.off(MESSAGE.PUBLISH);
-}
