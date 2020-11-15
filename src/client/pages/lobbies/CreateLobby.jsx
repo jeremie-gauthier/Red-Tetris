@@ -44,8 +44,20 @@ export default function CreateLobby({ close, state, dispatch }) {
     }
   }, [state.lobbiesResponse]);
 
-  const createLobby = (myLobby) => {
-    socket.emit(LOBBIES.ADD, myLobby);
+  const createLobby = () => {
+    if (
+      myLobby &&
+      myLobby.maxPlayer >= 2 &&
+      myLobby.maxPlayer <= 5 &&
+      myLobby.owner &&
+      myLobby?.name &&
+      myLobby.name.length > 0 &&
+      myLobby.name.trim() !== ""
+    ) {
+      socket.emit(LOBBIES.ADD, myLobby);
+    } else {
+      notify("Invalid lobby creation!");
+    }
     setMyLobby({
       hash: "test",
       maxPlayer: 4,
@@ -53,56 +65,62 @@ export default function CreateLobby({ close, state, dispatch }) {
     });
   };
 
+  const submit = (event) => {
+    event.preventDefault();
+    createLobby();
+  };
+
   return (
     <div>
       <h1 className="text-center">{t("pages.lobbies.create_lobby")}</h1>
       <FlexBox direction="row" className="">
         <FlexBox direction="col" className="items-center border-red-400 py-2">
-          <input
-            className="bg-white focus:outline-none focus:shadow-outline
+          <form onSubmit={submit}>
+            <input
+              className="bg-white focus:outline-none focus:shadow-outline
             border border-gray-300 rounded-lg mb-2 mr-3 py-1 px-2
             block w-full appearance-none leading-normal"
-            name="name"
-            placeholder={t("pages.lobbies.lobby_name")}
-            value={myLobby?.name || ""}
-            onChange={handleLobby}
-            autoFocus
-          />
-          <span className="mt-1">{t("pages.lobbies.max_players")}:</span>
-          <select
-            className="bg-white focus:outline-none focus:shadow-outline
+              name="name"
+              placeholder={t("pages.lobbies.lobby_name")}
+              value={myLobby?.name || ""}
+              onChange={handleLobby}
+              autoFocus
+            />
+            <span className="mt-1">{t("pages.lobbies.max_players")}:</span>
+            <select
+              className="bg-white focus:outline-none focus:shadow-outline
             border border-gray-300 rounded-lg mb-2 mr-3 py-1
             px-2 block w-full appearance-none leading-normal"
-            onChange={handleLobby}
-            name="maxPlayer"
-            defaultValue={4}
-          >
-            {playersSelection.map((_value, input) => {
-              const inputValue = input + minPlayers;
-              return (
-                <option
-                  value={inputValue}
-                  key={input + "select players number"}
-                >
-                  {inputValue}
-                </option>
-              );
-            })}
-          </select>
-          <button
-            data-testid="create_new_lobby"
-            disabled={
-              !myLobby?.hash?.length ||
-              !myLobby?.name?.length ||
-              !myLobby?.maxPlayer
-            }
-            className="flex-shrink-0 bg-red-400 hover:bg-red-600
+              onChange={handleLobby}
+              name="maxPlayer"
+              defaultValue={4}
+            >
+              {playersSelection.map((_value, input) => {
+                const inputValue = input + minPlayers;
+                return (
+                  <option
+                    value={inputValue}
+                    key={input + "select players number"}
+                  >
+                    {inputValue}
+                  </option>
+                );
+              })}
+            </select>
+            <button
+              data-testid="create_new_lobby"
+              disabled={
+                !myLobby?.hash?.length ||
+                !myLobby?.name?.length ||
+                !myLobby?.maxPlayer
+              }
+              className="flex-shrink-0 bg-red-400 hover:bg-red-600
             text-sm text-white py-1 px-2 rounded mt-10"
-            type="button"
-            onClick={() => createLobby(myLobby)}
-          >
-            {t("pages.lobbies.create_lobby")}
-          </button>
+              type="submit"
+            >
+              {t("pages.lobbies.create_lobby")}
+            </button>
+          </form>
         </FlexBox>
       </FlexBox>
     </div>
