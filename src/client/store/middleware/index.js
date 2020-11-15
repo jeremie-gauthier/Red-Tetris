@@ -5,7 +5,7 @@ import { setupSocketGame, removeSocketGame } from "store/middleware/game";
 
 const host = process.env.REACT_APP_SERVER_HOST || "0.0.0.0:3004";
 
-export const socket = socketIOClient(host, { transports: ["websocket"] });
+export const socket = socketIOClient(host);
 
 let socketPlayer = false;
 let socketRooms = false;
