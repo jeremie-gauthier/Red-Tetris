@@ -44,7 +44,6 @@
 		"launch_game": "Lancer la partie",
 		"leave_lobby": "Quitter le salon",
 		"ready": "Prêt",
-		"send": "Envoyer",
 		"type_message": "Écrivez un message"
 	},
 	"router": {

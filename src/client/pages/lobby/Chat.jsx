@@ -83,15 +83,15 @@ export default function Chat({ height, state }) {
             placeholder={t("pages.lobby.type_message")}
             value={message}
             onChange={handleMessage}
-            className="w-84% shadow-lg pl-2 bg-grey-100"
+            className="w-89% shadow-lg pl-2 bg-grey-100"
             maxLength="150"
           />
           <button
-            className="w-15% flex-shrink-0 bg-red-400 hover:bg-red-600
+            className="w-1/10 flex-shrink-0 bg-red-400 hover:bg-red-600
             text-sm text-white py-1 px-2 rounded"
             type="submit"
           >
-            {t("pages.lobby.send")}
+            >
           </button>
         </form>
       </FlexBox>

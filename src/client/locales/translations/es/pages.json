@@ -44,7 +44,6 @@
 		"launch_game": "Comenzar el juego",
 		"leave_lobby": "Deja el lobby",
 		"ready": "Listo",
-		"send": "Enviar",
 		"type_message": "Escribe un mensaje"
 	},
 	"router": {
