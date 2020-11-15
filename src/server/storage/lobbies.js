@@ -258,6 +258,7 @@ export const isLobbyPlaying = async (lobbyId) => {
   const lobbies = (await getComplexObjectFromRedis("lobbies")) ?? {};
 
   const lobby = lobbies?.[lobbyId];
+  console.log("isLobbyPlaying lobby", lobby);
   if (!lobby) {
     return false;
   }
