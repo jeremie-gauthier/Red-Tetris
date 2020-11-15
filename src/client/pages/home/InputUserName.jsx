@@ -19,9 +19,9 @@ export default function InputUserName() {
 
   React.useEffect(() => {
     socketPlayerOn(dispatch);
-    // return () => {
-    //   socketPlayerOff();
-    // };
+    return () => {
+      socketPlayerOff();
+    };
   }, []);
 
   const handlePlayerName = (e) => {
