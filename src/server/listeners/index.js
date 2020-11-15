@@ -65,12 +65,15 @@ eventEmitter.on(event.player.disconnect, async ({ socket }) => {
   socket.leave(GROUP.LOBBIES);
   const playerId = await getPlayerId(socket.id);
   const lobbyId = await isOnLobbyPlayerId(playerId);
-
+  console.log("there is a disconnectino");
   if (lobbyId && lobbyId !== null) {
+    console.log("there is a lobbyid");
     const lobbyPlaying = await isLobbyPlaying(lobbyId);
     if (lobbyPlaying) {
+      console.log("there is a lobby playing");
       const loser = await hasLost(lobbyId, playerId);
       if (!loser) {
+        console.log("player has not lost");
         await setLoser(lobbyId, playerId);
         eventEmitter.emit(event.game.lose, {
           socket,
