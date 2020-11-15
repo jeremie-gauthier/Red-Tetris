@@ -48,12 +48,6 @@ const SpiedRoutes = () => {
     }
   }, [location.pathname]);
 
-  React.useEffect(() => {
-    if (!socket.connected) {
-      navigate("/force-refresh");
-    }
-  }, [socket.connected]);
-
   return (
     <>
       <Route exact path="/" component={Home} />
