@@ -10,7 +10,7 @@ import { StoreContext } from "store";
 import "./Lobbies.scss";
 import { socket, socketRoomsOn } from "store/middleware";
 import useNavigate from "hooks/useNavigate";
-import { setLobby, setLobbyResponse } from "actions/store";
+import { setLobby, setLobbyResponse, resetMessages } from "actions/store";
 import { toast } from "react-toastify";
 import { LOBBY } from "../../../config/actions/lobby";
 import { LOBBIES } from "../../../config/actions/lobbies";
@@ -59,6 +59,7 @@ export default function Lobbies() {
       if (state.lobbyResponse.type === "error") {
         notify(state?.lobbyResponse?.reason);
       } else if (state.lobbyResponse.type === "success") {
+        dispatch(resetMessages());
         dispatch(setLobby(state.lobbyResponse.payload));
         dispatch(setLobbyResponse({}));
       }
