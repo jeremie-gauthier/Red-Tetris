@@ -87,7 +87,7 @@ eventEmitter.on(event.player.disconnect, async ({ socket }) => {
     }
     const lobbyId2 = await clearPlayerFromLobbies(playerId);
     console.log("lobbyId2", lobbyId2);
-    socket.leave(`${GROUP_DOMAIN}:lobby-${lobbyId}`);
+    socket.leave(`${GROUP_DOMAIN}:lobby-${lobbyId2}`);
     eventEmitter.emit(event.lobby.change, {
       lobbyId2,
     });

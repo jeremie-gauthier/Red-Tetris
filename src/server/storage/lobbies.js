@@ -245,9 +245,12 @@ export const clearPlayerFromLobbies = async (playerId) => {
 
   const isOnLobby = playerIsOnLobbyByPlayerId(lobbies, playerId);
   if (isOnLobby) {
+    console.log("clearPlayerFromLobbies is on lobby ok");
     const lobbyId = getLobbyIdByPlayerId(lobbies, playerId);
     const response = await leaveLobby(playerId, lobbyId);
     if (response.type === "success") {
+      console.log("leave lobby ok ");
+
       return lobbyId;
     }
   }
