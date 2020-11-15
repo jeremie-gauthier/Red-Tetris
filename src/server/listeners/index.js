@@ -1,5 +1,6 @@
 import { EventEmitter } from "events";
 import event from "listeners/events";
+import Message from "models/message";
 import { getComplexObjectFromRedis } from "storage";
 import { LOBBIES } from "../../config/actions/lobbies";
 import { LOBBY } from "../../config/actions/lobby";
@@ -81,6 +82,15 @@ eventEmitter.on(event.player.disconnect, async ({ socket }) => {
     }
     const lobbyId = await clearPlayerFromLobbies(playerId);
     socket.leave(`${GROUP_DOMAIN}:lobby-${lobbyId}`);
+
+    const messageObject = new Message({
+      message: "A player has disconnected",
+      sender: "",
+    });
+    eventEmitter.emit(event.message.new, {
+      lobbyId,
+      messageObject,
+    });
     eventEmitter.emit(event.lobby.change, {
       lobbyId,
     });

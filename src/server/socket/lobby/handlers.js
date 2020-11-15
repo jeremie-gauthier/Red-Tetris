@@ -12,6 +12,7 @@ import GROUP_DOMAIN from "../../../config/actions/group";
 import eventEmitter from "listeners";
 import event from "listeners/events";
 import Game from "models/game";
+import Message from "models/message";
 import { setGame } from "../../storage/game";
 
 export const handlerSubscribeLobby = async (socket, { lobbyId, playerId }) => {
@@ -59,6 +60,16 @@ export const handlerKickLobby = async (
     eventEmitter.emit(event.lobby.kicked, {
       socketId: response.payload.socketId,
       lobbyId,
+    });
+
+    const messageObject = new Message({
+      message: "A player has been kicked",
+      sender: "",
+    });
+
+    eventEmitter.emit(event.message.new, {
+      lobbyId,
+      messageObject,
     });
 
     eventEmitter.emit(event.lobby.change, {
