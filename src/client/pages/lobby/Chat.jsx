@@ -4,9 +4,11 @@ import { MESSAGE } from "../../../config/actions/message";
 import "./Lobby.scss";
 import { socket } from "store/middleware";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 export default function Chat({ height, state }) {
   const { t } = useTranslation();
+  const notify = (error) => toast.error(error);
   const [message, setMessage] = React.useState("");
 
   const handleMessage = (e) => {
@@ -25,12 +27,14 @@ export default function Chat({ height, state }) {
   }, [state.messages]);
 
   const sendMessage = () => {
-    if (message && message !== "") {
+    if (message && message.trim() !== "" && message.length <= 150) {
       const sender = state.player.name;
       const lobbyId = state?.lobby?.id;
-      socket.emit(MESSAGE.SEND, { message, sender, lobbyId });
-      setMessage("");
+      socket.emit(MESSAGE.SEND, { message: message.trim(), sender, lobbyId });
+    } else {
+      notify("Invalid message!");
     }
+    setMessage("");
   };
 
   const submit = (event) => {
@@ -80,6 +84,7 @@ export default function Chat({ height, state }) {
             value={message}
             onChange={handleMessage}
             className="w-84% shadow-lg pl-2 bg-grey-100"
+            maxLength="150"
           />
           <button
             className="w-15% flex-shrink-0 bg-red-400 hover:bg-red-600
