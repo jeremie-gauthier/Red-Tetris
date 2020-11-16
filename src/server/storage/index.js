@@ -7,7 +7,18 @@ const runRedis = () =>
   new Promise((resolve) => {
     const host = process.env.REDIS_HOST || "127.0.0.1";
     const port = process.env.REDIS_PORT || 6379;
+    const password = process.env.REDIS_PASSWD;
+
     redisClient = redis.createClient({ host, port });
+
+    if (password) {
+      redisClient.auth(password, (err) => {
+        if (err) {
+          throw err;
+        }
+      });
+    }
+
     redisClient.on("connect", () => {
       loginfo("Redis client listening on port:", port);
       resolve();
