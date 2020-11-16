@@ -23,6 +23,9 @@ const runHttpServer = () =>
     });
   });
 
-export const quitHttpServer = async () => await httpTerminator.terminate();
+export const quitHttpServer = async () =>
+  new Promise((resolve) => {
+    httpTerminator.terminate().then(() => resolve());
+  });
 
 export default runHttpServer;
