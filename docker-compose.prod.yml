@@ -2,9 +2,7 @@ version: "3"
 services:
   redis:
     image: redis:latest
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-      - DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG
+    command: redis-server --requirepass ${REDIS_PASSWD}
     container_name: redtetris-redis-prod
     restart: always
 
