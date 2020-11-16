@@ -6,7 +6,7 @@ import { setPanic } from "actions/store";
 
 const host = process.env.REACT_APP_SERVER_HOST || "0.0.0.0:3004";
 
-export const socket = socketIOClient(host);
+export const socket = socketIOClient(host, { path: " /mysocket" });
 
 let socketPlayer = false;
 let socketRooms = false;

@@ -23,7 +23,10 @@ const handlers = Object.values({
 export let io;
 
 const runSocketIo = (httpServer) => {
-  io = socketIO(httpServer, { cookie: false });
+  io = socketIO(httpServer, {
+    path: " /mysocket",
+    cookie: false,
+  });
 
   io.on("connection", async (socket) => {
     loginfo(socket.id, "A new socket has connected!");
