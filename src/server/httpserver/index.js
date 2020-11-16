@@ -1,11 +1,15 @@
 import { loginfo } from "utils/log";
 import express from "express";
 import http from "http";
+import { createHttpTerminator } from "http-terminator";
 import path from "path";
 import params from "../../config/params/params";
 
 const app = express();
 export const httpServer = http.createServer(app);
+const httpTerminator = createHttpTerminator({
+  server: httpServer,
+});
 
 const runHttpServer = () =>
   new Promise((resolve) => {
@@ -19,9 +23,6 @@ const runHttpServer = () =>
     });
   });
 
-export const quitHttpServer = async () =>
-  new Promise((resolve) => {
-    httpServer.close(resolve);
-  });
+export const quitHttpServer = async () => await httpTerminator.terminate();
 
 export default runHttpServer;

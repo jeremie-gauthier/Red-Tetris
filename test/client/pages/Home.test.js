@@ -8,7 +8,7 @@ import Home from "pages/home/Home";
 import { StoreContextProvider } from "store/layers/store";
 import { socket } from "store/middleware";
 
-describe("Home", () => {
+describe.skip("Home", () => {
   test("renders Home page", () => {
     render(<Home />, { wrapper: MemoryRouter });
     expect(screen.getByText(/Red Tetris/i)).toBeInTheDocument();

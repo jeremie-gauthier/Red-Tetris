@@ -11,13 +11,13 @@ afterAll((done) => {
 });
 
 describe("Testing run server", () => {
-  test("Connection", async () => {
+  test("Should get 200", async () => {
     const res = await request(httpServer).get("/");
-    expect(res.statusCode).toEqual(404);
+    expect(res.statusCode).toEqual(200);
   });
 
-  test("Disconnection", async () => {
-    const res = await request(httpServer).get("/");
+  test("Should get 200", async () => {
+    const res = await request(httpServer).get("/test");
     expect(res.statusCode).toEqual(404);
   });
 });
