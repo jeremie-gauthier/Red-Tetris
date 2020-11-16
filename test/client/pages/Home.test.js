@@ -7,10 +7,17 @@ import "locales/i18n";
 import Home from "pages/home/Home";
 import { StoreContextProvider } from "store/layers/store";
 import { socket } from "store/middleware";
+import { StoreContext } from "store/layers/store";
+import { initialState as defaultStore } from "reducers/store";
 
-describe.skip("Home", () => {
+describe("Home", () => {
   test("renders Home page", () => {
-    render(<Home />, { wrapper: MemoryRouter });
+    render(
+      <StoreContext.Provider value={{ state: defaultStore, dispatch: {} }}>
+        <Home />
+      </StoreContext.Provider>,
+      { wrapper: MemoryRouter },
+    );
     expect(screen.getByText(/Red Tetris/i)).toBeInTheDocument();
     expect(screen.getByText(/Solo/i)).toBeInTheDocument();
     expect(screen.getByText(/Multijoueur/i)).toBeInTheDocument();
