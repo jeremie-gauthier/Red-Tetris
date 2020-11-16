@@ -17,8 +17,6 @@ export default function InputUserName() {
   const { navigate } = useNavigate();
   const notify = (error) => toast.error(error);
 
-  React.useEffect(() => {}, []);
-
   const handlePlayerName = (e) => {
     setPlayerName(e.target.value);
   };
