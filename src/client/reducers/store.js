@@ -9,7 +9,6 @@ import {
   ADD_MESSAGE,
   RESET_MESSAGES,
   SET_GAME_STARTED,
-  SET_PANIC,
 } from "actions/store";
 
 export const initialState = {
@@ -22,7 +21,6 @@ export const initialState = {
   lobbyResponse: {},
   messages: [],
   game: {},
-  panic: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -54,8 +52,6 @@ export default function reducer(state = initialState, action) {
       return { ...state, messages: [] };
     case SET_GAME_STARTED:
       return { ...state, game: action.game };
-    case SET_PANIC:
-      return { ...state, panic: true };
     default:
       return state;
   }

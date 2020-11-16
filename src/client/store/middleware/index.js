@@ -2,7 +2,6 @@ import socketIOClient from "socket.io-client";
 import { setupSocketPlayer, removeSocketPlayer } from "store/middleware/player";
 import { setupSocketRooms } from "store/middleware/rooms";
 import { setupSocketGame, removeSocketGame } from "store/middleware/game";
-import { setPanic } from "actions/store";
 
 const host = process.env.REACT_APP_SERVER_HOST || "0.0.0.0:3004";
 
@@ -12,11 +11,16 @@ let socketPlayer = false;
 let socketRooms = false;
 let socketGame = false;
 
-export function socketDisconnectOn(dispatch) {
+export function socketDisconnectOn() {
   socket.on("disconnect", (reason) => {
-    console.log(`socketId : ${socket.id}`);
-    console.log(`disconnect reason: ${reason}`);
-    dispatch(setPanic());
+    console.log(`Socket got disconnected: ${reason}`);
+    window.location.href = "/";
+  });
+
+  socket.on("connect_error", () => {
+    setTimeout(() => {
+      socket.connect();
+    }, 2000);
   });
 }
 

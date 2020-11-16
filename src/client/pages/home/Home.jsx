@@ -28,7 +28,7 @@ export default function Home() {
       document.location.reload();
     }
     socketPlayerOn(dispatch);
-    socketDisconnectOn(dispatch);
+    socketDisconnectOn();
     return () => {
       socketPlayerOff();
     };

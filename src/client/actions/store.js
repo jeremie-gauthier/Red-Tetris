@@ -8,7 +8,6 @@ export const SET_LOBBY_RESPONSE = "SET_LOBBY_RESPONSE";
 export const ADD_MESSAGE = "ADD_MESSAGE";
 export const RESET_MESSAGES = "RESET_MESSAGES";
 export const SET_GAME_STARTED = "SET_GAME_STARTED";
-export const SET_PANIC = "SET_PANIC";
 
 export const setPlayerResponse = (playerResponse) => ({
   type: SET_PLAYER_RESPONSE,
@@ -57,8 +56,4 @@ export const resetMessages = () => ({
 export const setGameStarted = (game) => ({
   type: SET_GAME_STARTED,
   game,
-});
-
-export const setPanic = () => ({
-  type: SET_PANIC,
 });
