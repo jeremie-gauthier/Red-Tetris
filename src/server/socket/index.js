@@ -26,7 +26,7 @@ const runSocketIo = (httpServer) => {
   io = socketIO(httpServer, { cookie: false });
 
   io.on("connection", async (socket) => {
-    loginfo("A new socket has connected!");
+    loginfo(socket.id, "A new socket has connected!");
 
     /* Test on reconnect */
     socket.on("reconnect", (attemptNumber) => {
