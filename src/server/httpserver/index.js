@@ -9,11 +9,8 @@ export const httpServer = http.createServer(app);
 
 const runHttpServer = () =>
   new Promise((resolve) => {
-    const file =
-      params.url === "/bundle.js" ? "/../../build/bundle.js" : "/../index.html";
-
     app.get("/", (req, res) => {
-      res.sendFile(path.resolve(__dirname, file));
+      res.sendFile(path.resolve(__dirname, "../index.html"));
     });
 
     httpServer.listen(params.server.port, () => {
