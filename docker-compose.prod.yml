@@ -6,8 +6,6 @@ services:
       - ALLOW_EMPTY_PASSWORD=yes
       - DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG
     container_name: redtetris-redis-prod
-    ports:
-      - "6379:6379"
     restart: always
 
   server:
@@ -19,6 +17,8 @@ services:
       - "3004:3004"
     environment:
       REDIS_HOST: redtetris-redis-prod
+      REDIS_PORT: 6379
+      REDIS_PASSWD: ${REDIS_PASSWD}
     restart: always
     links:
       - redis
