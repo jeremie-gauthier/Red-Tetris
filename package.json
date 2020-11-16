@@ -14,7 +14,7 @@
     "format": "prettier --write .",
     "test-ci": "jest --runInBand",
     "format-ci": "prettier --check .",
-    "redis": "docker run -p 6379:6379 --name redis -d redis",
+    "redis": "sudo docker run -p 6379:6379 --name redis -d redis",
     "clean-srv": "sudo docker stop redis && sudo docker rm redis && sudo docker run -p 6379:6379 --name redis -d redis && npm run srv-dev"
   },
   "dependencies": {
