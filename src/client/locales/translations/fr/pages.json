@@ -1,0 +1,52 @@
+{
+	"game": {
+		"back_to_lobbies": "Retour aux salons",
+		"game_over": "Partie terminée",
+		"leaderboard": "Classement",
+		"level": "Niveau",
+		"lines_removed": "{{count}} Ligne supprimée",
+		"lines_removed_plural": "{{count}} Lignes supprimées",
+		"main_menu": "Menu principal",
+		"next_pieces": "Pièces suivantes",
+		"score": "Score",
+		"sound_off": "Son éteint",
+		"sound_on": "Son allumé",
+		"stats": "Stats",
+		"winner": "Gagnant"
+	},
+	"home": {
+		"multiplayer": "Multijoueur",
+		"new_player": "Nouveau joueur",
+		"player_name": "Pseudonyme",
+		"solo": "Solo"
+	},
+	"lobbies": {
+		"create_lobby": "Créer un salon",
+		"empty_lobby_list": "Aucun salon trouvé",
+		"go_back_home": "Retour à l'accueil",
+		"helper_down": "Déplacer la pièce vers le bas",
+		"helper_left": "Déplacer la pièce vers la gauche",
+		"helper_right": "Déplacer la pièce vers la droite",
+		"helper_space": "Placer la pièce tout en bas",
+		"helper_title": "Comment jouer ?",
+		"helper_up": "Pivoter la pièce",
+		"join_game": "Rejoindre une partie",
+		"lobby_name": "Nom du salon",
+		"max_players": "Joueurs max",
+		"players_connected": "{{count}} Joueur connecté",
+		"players_connected_plural": "{{count}} Joueurs connectés",
+		"playing": "Partie en cours",
+		"search_lobby": "Rechercher un salon de jeu"
+	},
+	"lobby": {
+		"cancel": "Annuler",
+		"delete_lobby": "Supprimer le salon",
+		"launch_game": "Lancer la partie",
+		"leave_lobby": "Quitter le salon",
+		"ready": "Prêt",
+		"type_message": "Écrivez un message"
+	},
+	"router": {
+		"loading": "Chargement..."
+	}
+}

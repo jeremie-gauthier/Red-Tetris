@@ -1,0 +1,42 @@
+.home-modal {
+  @apply flex flex-col justify-center items-center bg-white rounded py-10 px-20;
+
+  h1 {
+    @apply text-4xl font-bold text-red-600 mb-10;
+  }
+
+  h2 {
+    @apply text-2xl my-2 font-bold;
+  }
+}
+
+.user-input {
+  @apply bg-white border border-gray-300 rounded-lg mr-3 py-1 px-2 block w-full appearance-none leading-normal;
+}
+
+.user-button {
+  @apply bg-red-400 text-sm text-white p-2 rounded;
+
+  &:hover {
+    @apply bg-red-600;
+  }
+}
+
+.home-game-pad {
+  @apply flex flex-col items-center justify-center h-32;
+}
+
+.drop-animation {
+  animation-name: infinite-drop;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes infinite-drop {
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 100%;
+  }
+}

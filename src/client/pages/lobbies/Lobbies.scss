@@ -1,0 +1,46 @@
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scroll {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.create-modal {
+  @apply flex flex-col justify-center items-center bg-white rounded py-10 px-20;
+
+  h1 {
+    @apply text-4xl font-bold text-red-600 mb-10;
+  }
+
+  h2 {
+    @apply text-2xl my-2 font-bold;
+  }
+}
+
+.lobby-item {
+  @apply border border-grey-200 justify-between items-center rounded-lg shadow-md p-3 mb-3;
+
+  .status-dot {
+    @apply h-3 w-3 rounded-full mr-2;
+  }
+}
+
+.action-btn {
+  @apply text-center bg-red-400 rounded-lg shadow-lg py-1 px-2;
+
+  &:hover {
+    @apply bg-red-600;
+  }
+}
+
+.disabled-btn {
+  @apply text-center cursor-default rounded-lg shadow-lg bg-gray-400 py-1 px-2;
+}
+
+.create-input {
+  @apply bg-white border border-gray-300 rounded-lg mb-2 mr-3 py-1 px-2 block w-full appearance-none leading-normal;
+}

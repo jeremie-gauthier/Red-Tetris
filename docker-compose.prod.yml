@@ -1,0 +1,36 @@
+version: "3"
+services:
+  redis:
+    image: redis:latest
+    command: redis-server --requirepass ${REDIS_PASSWD}
+    container_name: redtetris-redis-prod
+    restart: always
+
+  server:
+    build:
+      context: .
+      dockerfile: .docker/server/Dockerfile
+    container_name: redtetris-server-prod
+    ports:
+      - "3004:3004"
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_PASSWD: ${REDIS_PASSWD}
+    restart: always
+    links:
+      - redis
+    depends_on:
+      - redis
+    volumes:
+      - ./:/redtetris/server/
+      - /redtetris/server/node_modules
+
+  client:
+    build:
+      context: .
+      dockerfile: .docker/client/Dockerfile.prod
+    container_name: redtetris-client-prod
+    ports:
+      - "8000:80"
+    restart: always

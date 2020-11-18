@@ -1,0 +1,6 @@
+build
+resources
+coverage
+.storybook
+README.md
+src/client/locales/translations

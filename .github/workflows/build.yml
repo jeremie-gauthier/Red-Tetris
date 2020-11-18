@@ -1,0 +1,26 @@
+name: Build client
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
+
+jobs:
+  build-client:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "13.8"
+      - name: Install modules
+        run: npm install
+      - name: Run build client
+        run: npm run client-dist
