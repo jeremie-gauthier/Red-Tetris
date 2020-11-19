@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "nicolasvienot",
+      "name": "Nicolas Viénot",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/44903069?v=4",
+      "profile": "https://fr.linkedin.com/in/nicolasvienot",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "Red-Tetris",
+  "projectOwner": "jeremie-gauthier",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
