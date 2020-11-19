@@ -1,6 +1,6 @@
 ![Build client](https://github.com/jeremie-gauthier/Red-Tetris/workflows/Build%20client/badge.svg)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ![Jest](https://github.com/jeremie-gauthier/Red-Tetris/workflows/Jest/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/jeremie-gauthier/Red-Tetris/badge.svg?branch=develop&service=github)](https://coveralls.io/github/jeremie-gauthier/Red-Tetris?branch=develop)
@@ -25,6 +25,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://fr.linkedin.com/in/nicolasvienot"><img src="https://avatars0.githubusercontent.com/u/44903069?v=4" width="100px;" alt=""/><br /><sub><b>Nicolas Viénot</b></sub></a><br /><a href="https://github.com/jeremie-gauthier/Red-Tetris/commits?author=nicolasvienot" title="Code">💻</a></td>
+    <td align="center"><a href="https://jeremie-gauthier.github.io/"><img src="https://avatars0.githubusercontent.com/u/28305181?v=4" width="100px;" alt=""/><br /><sub><b>jergauth</b></sub></a><br /><a href="https://github.com/jeremie-gauthier/Red-Tetris/commits?author=jeremie-gauthier" title="Code">💻</a></td>
   </tr>
 </table>
 
