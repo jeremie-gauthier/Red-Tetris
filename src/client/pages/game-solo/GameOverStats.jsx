@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import FlexBox from "components/flexbox/FlexBox";
 import { useTranslation } from "react-i18next";
+const host = process.env.REACT_APP_SERVER_HOST || "http://0.0.0.0:3004";
 
 export default function GameOverStats({ score, level, linesRemoved }) {
   const { t } = useTranslation();
@@ -42,7 +43,7 @@ const SubmitScore = ({ score }) => {
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
 
-    fetch("http://0.0.0.0:3004/score", {
+    fetch(`${host}/score`, {
       method: "POST",
       headers,
       body,
