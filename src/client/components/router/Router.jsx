@@ -10,6 +10,7 @@ import {
 import Home from "pages/home/Home";
 import Lobbies from "pages/lobbies/Lobbies";
 import Lobby from "pages/lobby/LobbyContainer";
+import Leaderboard from "pages/leaderboard/Leaderboard";
 const LazyGameMulti = React.lazy(() => import("pages/game-multi/GameMulti"));
 const LazyGameSolo = React.lazy(() => import("pages/game-solo/GameSolo"));
 import FlexBox from "components/flexbox/FlexBox";
@@ -50,6 +51,7 @@ const SpiedRoutes = () => {
   return (
     <>
       <Route exact path="/" component={Home} />
+      <Route exact path="/leaderboard" component={Leaderboard} />
       <Route exact path="/force-refresh">
         <ForceRefresh />
       </Route>

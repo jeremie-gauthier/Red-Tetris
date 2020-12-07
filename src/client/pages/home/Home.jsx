@@ -18,6 +18,7 @@ import {
   socketPlayerOff,
 } from "store/middleware";
 import { StoreContext } from "store";
+import Trophy from "assets/img/trophy.png";
 
 export default function Home() {
   const location = useLocation();
@@ -39,6 +40,13 @@ export default function Home() {
       <AnimatedBackground />
       <Modal className="home-modal">
         <h1>Red Tetris</h1>
+        <Link to="/leaderboard">
+          <img
+            src={Trophy}
+            className="font-thin rounded bg-white z-50 shadow w-20 fixed top-0
+              right-0 py-4 px-4 mr-5 mt-5 cursor-pointer"
+          />
+        </Link>
         <Link to="/single-player[solo]/game" className="mb-10 cursor-pointer">
           <SinglePlayer />
         </Link>
