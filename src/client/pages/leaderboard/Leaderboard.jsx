@@ -4,11 +4,11 @@ import { useTranslation } from "react-i18next";
 import FlexBox from "components/flexbox/FlexBox";
 import "./Leaderboard.scss";
 const host = process.env.REACT_APP_SERVER_HOST || "0.0.0.0:3004";
- 
+
 export default function Leaderboard() {
   const [leaderboard, setLeaderboard] = React.useState({});
   const { t } = useTranslation();
-  
+
   React.useEffect(() => {
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
