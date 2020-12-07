@@ -6,7 +6,7 @@ import path from "path";
 import params from "../../config/params/params";
 import cors from "cors";
 import bodyParser from "body-parser";
-import fs from "fs/promises";
+import fs from "fs";
 
 const app = express();
 app.use(cors());
@@ -25,7 +25,7 @@ const runHttpServer = () =>
 
     app.get("/score", async (req, res) => {
       const filePath = path.resolve(__dirname, "./leaderboard.json");
-      const leaderboard = await fs.readFile(filePath);
+      const leaderboard = await fs.promises.readFile(filePath);
       const leaderboardJSON = JSON.parse(leaderboard);
 
       return res.status(200).json({ leaderboard: leaderboardJSON });
@@ -34,7 +34,7 @@ const runHttpServer = () =>
     app.post("/score", async (req, res) => {
       const { playerName, score } = req.body;
       const filePath = path.resolve(__dirname, "./leaderboard.json");
-      const leaderboard = await fs.readFile(filePath);
+      const leaderboard = await fs.promises.readFile(filePath);
       const leaderboardJSON = JSON.parse(leaderboard);
 
       if (playerName in leaderboardJSON) {
@@ -45,7 +45,7 @@ const runHttpServer = () =>
         leaderboardJSON[playerName] = score;
       }
 
-      fs.writeFile(filePath, JSON.stringify(leaderboardJSON));
+      fs.promises.writeFile(filePath, JSON.stringify(leaderboardJSON));
       return res.status(201).json({ message: "Ok" });
     });
 
