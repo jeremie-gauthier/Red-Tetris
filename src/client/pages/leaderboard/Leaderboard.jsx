@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import FlexBox from "components/flexbox/FlexBox";
 import "./Leaderboard.scss";
-const host = process.env.REACT_APP_SERVER_HOST || "0.0.0.0:3004";
+const host = process.env.REACT_APP_SERVER_HOST || "http://0.0.0:3004";
 
 export default function Leaderboard() {
   const [leaderboard, setLeaderboard] = React.useState({});
@@ -13,7 +13,7 @@ export default function Leaderboard() {
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
 
-    fetch(`http://${host}/score`, {
+    fetch(`${host}/score`, {
       method: "GET",
       headers,
     })
