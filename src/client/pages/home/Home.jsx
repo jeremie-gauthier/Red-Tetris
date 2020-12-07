@@ -43,7 +43,8 @@ export default function Home() {
         <Link to="/leaderboard">
           <img
             src={Trophy}
-            className="font-thin rounded bg-white z-50 shadow w-20 fixed top-0 right-0 py-4 px-4 mr-5 mt-5 cursor-pointer"
+            className="font-thin rounded bg-white z-50 shadow w-20 fixed top-0
+              right-0 py-4 px-4 mr-5 mt-5 cursor-pointer"
           />
         </Link>
         <Link to="/single-player[solo]/game" className="mb-10 cursor-pointer">
