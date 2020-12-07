@@ -14,6 +14,7 @@ export default function GameOverStats({ score, level, linesRemoved }) {
       <Level level={level} />
       <LinesRemoved lines={linesRemoved} />
 
+      <SubmitScore score={score} />
       <Link
         to="/"
         className="self-center p-2 bg-red-500 rounded
@@ -24,6 +25,51 @@ export default function GameOverStats({ score, level, linesRemoved }) {
     </FlexBox>
   );
 }
+
+const SubmitScore = ({ score }) => {
+  const { t } = useTranslation();
+  const [playerName, setPlayerName] = React.useState("");
+
+  const notValid = !playerName || playerName.length === 0;
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    if (notValid) {
+      return false;
+    }
+
+    const body = JSON.stringify({ score, playerName });
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    fetch("http://0.0.0.0:3004/score", {
+      method: "POST",
+      headers,
+      body,
+    });
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col">
+      <input
+        value={playerName}
+        onChange={(e) => setPlayerName(e.target.value)}
+        placeholder={t("pages.home.player_name")}
+        className="rounded border border-red-300 p-2"
+      />
+      <button
+        type="submit"
+        className={`self-center p-2 bg-${notValid ? "grey" : "red"}-400 rounded
+        w-full text-center text-white font-semibold cursor-${
+          notValid ? "default" : "pointer"
+        }`}
+        disabled={notValid}
+      >
+        {t("pages.game.submit_score")}
+      </button>
+    </form>
+  );
+};
 
 const Score = ({ score }) => {
   const { t } = useTranslation();

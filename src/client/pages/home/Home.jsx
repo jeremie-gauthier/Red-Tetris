@@ -39,6 +39,7 @@ export default function Home() {
       <AnimatedBackground />
       <Modal className="home-modal">
         <h1>Red Tetris</h1>
+        <Link to="/leaderboard">Classement</Link>
         <Link to="/single-player[solo]/game" className="mb-10 cursor-pointer">
           <SinglePlayer />
         </Link>
