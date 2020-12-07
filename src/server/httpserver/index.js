@@ -26,8 +26,9 @@ const runHttpServer = () =>
     app.get("/score", async (req, res) => {
       const filePath = path.resolve(__dirname, "./leaderboard.json");
       const leaderboard = await fs.promises.readFile(filePath);
-      const leaderboardJSON = JSON.parse(leaderboard);
-
+      const leaderboardJSON = Object.fromEntries(
+        Object.entries(JSON.parse(leaderboard)).sort((c, n) => n[1] - c[1]),
+      );
       return res.status(200).json({ leaderboard: leaderboardJSON });
     });
 

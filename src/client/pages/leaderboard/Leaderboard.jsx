@@ -40,7 +40,7 @@ export default function Leaderboard() {
             key={`${idx}-${playerName}`}
           >
             <span>
-              {playerName}: {score}
+              {playerName} - {score}
             </span>
           </FlexBox>
         ))}
