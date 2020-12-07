@@ -20,7 +20,7 @@ export default function Leaderboard() {
       .then((response) => response.json())
       .then((data) => setLeaderboard(data.leaderboard))
       .catch((err) => console.log(err));
-  });
+  }, []);
 
   return (
     <div className="flex flex-1 flex-col justify-center pt-24 leaderboard">
@@ -36,7 +36,7 @@ export default function Leaderboard() {
         {Object.entries(leaderboard).map(([playerName, score], idx) => (
           <FlexBox
             direction="row"
-            className="py-2"
+            className="py-2 justify-center"
             key={`${idx}-${playerName}`}
           >
             <span>
