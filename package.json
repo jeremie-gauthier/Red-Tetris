@@ -9,6 +9,7 @@
     "client-dev": "NODE_ENV=production webpack-dev-server --colors --hot --inline --open --host 0.0.0.0 --port 3000",
     "srv-dev": "NODE_PATH=src/server DEBUG=tetris:* babel-watch -w src src/server/index.js",
     "srv-dist": "NODE_PATH=src/server DEBUG=tetris:* babel src --out-dir dist",
+    "srv-prod": "NODE_PATH=src/server DEBUG=tetris:* babel-watch src/server/index.js",
     "test": "jest --watch --notify --runInBand",
     "coverage": "jest --coverage --runInBand",
     "format": "prettier --write .",

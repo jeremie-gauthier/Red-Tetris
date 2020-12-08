@@ -6,4 +6,4 @@ COPY package*.json ./
 RUN npm install
 EXPOSE 3004
 
-CMD ["npm", "run", "srv-dev"]
+CMD ["npm", "run", "srv-prod"]

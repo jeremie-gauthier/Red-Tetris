@@ -24,7 +24,7 @@ const runHttpServer = () =>
     });
 
     app.get("/score", async (req, res) => {
-      const filePath = path.resolve(__dirname, "./leaderboard.json");
+      const filePath = path.resolve(__dirname, "../../config/leaderboard.json");
       const leaderboard = await fs.promises.readFile(filePath);
       const leaderboardJSON = Object.fromEntries(
         Object.entries(JSON.parse(leaderboard)).sort((c, n) => n[1] - c[1]),
@@ -34,7 +34,7 @@ const runHttpServer = () =>
 
     app.post("/score", async (req, res) => {
       const { playerName, score } = req.body;
-      const filePath = path.resolve(__dirname, "./leaderboard.json");
+      const filePath = path.resolve(__dirname, "../../config/leaderboard.json");
       const leaderboard = await fs.promises.readFile(filePath);
       const leaderboardJSON = JSON.parse(leaderboard);
 
