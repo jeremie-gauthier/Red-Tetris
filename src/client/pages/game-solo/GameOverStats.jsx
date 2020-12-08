@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import FlexBox from "components/flexbox/FlexBox";
+import useNavigate from "hooks/useNavigate";
 import { useTranslation } from "react-i18next";
 const host = process.env.REACT_APP_SERVER_HOST || "http://0.0.0.0:3004";
 
@@ -30,6 +31,7 @@ export default function GameOverStats({ score, level, linesRemoved }) {
 const SubmitScore = ({ score }) => {
   const { t } = useTranslation();
   const [playerName, setPlayerName] = React.useState("");
+  const { navigate } = useNavigate();
 
   const notValid = !playerName || playerName.length === 0;
 
@@ -48,6 +50,9 @@ const SubmitScore = ({ score }) => {
       headers,
       body,
     });
+
+    navigate("/leaderboard");
+
   };
 
   return (
