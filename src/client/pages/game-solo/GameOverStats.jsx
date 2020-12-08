@@ -52,7 +52,6 @@ const SubmitScore = ({ score }) => {
     });
 
     navigate("/leaderboard");
-
   };
 
   return (
