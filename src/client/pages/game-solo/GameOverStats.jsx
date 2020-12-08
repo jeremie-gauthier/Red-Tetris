@@ -51,7 +51,7 @@ const SubmitScore = ({ score }) => {
       body,
     });
 
-    navigate("/leaderboard");
+    navigate("/");
   };
 
   return (
