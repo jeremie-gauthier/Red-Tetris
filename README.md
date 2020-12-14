@@ -14,12 +14,12 @@ A JavaScript Full Stack project to recreate an online Tetris game.
 Online demo available here : https://redtetris.co
    
 <table>
-  <td>
+  <tdr>
     <img src="resources/redtetris1.gif">
-  </td>
-  <td>
+  </tr>
+  <tr>
     <img src="resources/redtetris2.gif">
-  </td>
+  </tr>
 </table>
 
 ## Documentation 📄
