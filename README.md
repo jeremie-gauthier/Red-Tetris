@@ -9,9 +9,20 @@
 
 A JavaScript Full Stack project to recreate an online Tetris game.
 
-Online demo available here : https://redtetris.co
+## Demo 💻
 
-## Documentation
+Online demo available here : https://redtetris.co
+   
+<table>
+  <td>
+    <img src="resources/redtetris1.gif">
+  </td>
+  <td>
+    <img src="resources/redtetris2.gif">
+  </td>
+</table>
+
+## Documentation 📄
 
 See [documentation](./docs/README.md).
 
